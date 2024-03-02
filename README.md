@@ -52,40 +52,90 @@
 
 Pasar _real estate_, seperti yang ada di Seattle, Washing, USA, menghadirkan peluang menarik bagi analis data untuk menganalisis dan memprediksi ke mana harga properti bergerak. Prediksi harga properti menjadi semakin penting dan menguntungkan. Harga properti merupakan indikator yang baik dari kondisi pasar secara keseluruhan dan kesehatan ekonomi suatu negara. Mempertimbangkan data yang diberikan, dalam memperdebatkan sejumlah besar catatan penjualan properti yang disimpan dalam format yang tidak diketahui dan dengan masalah kualitas data yang tidak diketahui.
 
-Data yang digunakan dalam proyek ini bersumber dari [Kaggle-House Price Prediction](https://www.kaggle.com/samuelcortinhas/house-price-prediction-seattle)
+  Data yang digunakan dalam proyek ini bersumber dari [Kaggle-Food Recommendation System](https://www.kaggle.com/samuelcortinhas/schemersays/food-recommendation-system)
 
-Jumlah data sebanyak 2016 data, yang terbagi dalam 8 kolom. Kolom pertama yaitu 'beds' memiliki 2016 data bertipe _integer_, kolom 'baths' memiliki 2016 data bertipe _float_, kolom 'size' memiliki 2016 data bertipe _float_, kolom 'size_units' memiliki 2016 data bertipe _object_, kolom 'lot_size' memiliki 1669 data bertipe _float_, kolom 'lot_size_units' memiliki 1669 data bertipe _object_, kolom 'zip_code' memiliki 2016 data bertipe _int_, dan yang terakhir kolom 'price' sebagai target memiliki 2016 data bertipe _float_. Terdapat banyak _missing value_ pada kolom lot_size dan lot_size_units sebanyak 347 data. Dataset dapat lebih lanjut dilihat pada Tabel 1.
+  Jumlah data pada dataset _foods.csv_ sebanyak 400 data, yang terbagi dalam 5 kolom. Kolom pertama yaitu 'Food_ID' yang di _rename_ menjadi 'id_makanan' memiliki 400 data unik bertipe _integer_, kolom 'Name' yang di _rename_ menjadi 'nama_makanan' memiliki 400 data unik bertipe _object_, kolom 'C_Type' yang di _rename_ menjadi 'jenis_makanan' memiliki 400 data bertipe _object_ dengan 16 jenis makanan yang unik, kolom 'Veg_Non' yang di _rename_ menjadi 'veg_non' memiliki 400 data bertipe _object_, kolom 'Describe' yang di _rename_ menjadi 'deskripsi' memiliki 400 data unik bertipe _object_. Dataset dapat lebih lanjut dilihat pada Tabel 1 dan 2.
 
-Tabel 1. Dataset _House Price Prediction_ - Seattle
+Tabel 1. Dataset _foods.csv_ sebelum di _rename_
 
-|      | beds | baths |   size | size_units | lot_size | lot_size_units | zip_code | price     |
-|-----:|-----:|------:|-------:|-----------:|---------:|---------------:|---------:|-----------|
-|   0  |    3 |   2.5 | 2590.0 |       sqft |  6000.00 |           sqft |    98144 |  795000.0 |
-|   1  |    4 |   2.0 | 2240.0 |       sqft |     0.31 |           acre |    98106 |  915000.0 |
-|   2  |    4 |   3.0 | 2040.0 |       sqft |  3783.00 |           sqft |    98107 |  950000.0 |
-|   3  |    4 |   3.0 | 3800.0 |       sqft |  5175.00 |           sqft |    98199 | 1950000.0 |
-|   4  |    2 |   2.0 | 1042.0 |       sqft |      NaN |            NaN |    98102 |  950000.0 |
-|  ... |  ... |   ... |    ... |        ... |      ... |            ... |      ... |       ... |
-| 2011 |    3 |   2.0 | 1370.0 |       sqft |     0.50 |           acre |    98112 |  910000.0 |
-| 2012 |    1 |   1.0 |  889.0 |       sqft |      NaN |            NaN |    98121 |  550000.0 |
-| 2013 |    4 |   2.0 | 2140.0 |       sqft |  6250.00 |           sqft |    98199 | 1150000.0 |
-| 2014 |    2 |   2.0 |  795.0 |       sqft |      NaN |            NaN |    98103 |  590000.0 |
-| 2015 |    3 |   2.0 | 1710.0 |       sqft |  4267.00 |           sqft |    98133 |  659000.0 |
+|     | Food_ID |                                              Name |       C_Type | Veg_Non | Describe                                          |
+|----:|--------:|--------------------------------------------------:|-------------:|--------:|---------------------------------------------------|
+|  0  |       1 |                               summer squash salad | Healthy Food |     veg | white balsamic vinegar, lemon juice, lemon rin... |
+|  1  |       2 |                              chicken minced salad | Healthy Food | non-veg | olive oil, chicken mince, garlic (minced), oni... |
+|  2  |       3 |                              sweet chilli almonds |        Snack |     veg | almonds whole, egg white, curry leaves, salt, ... |
+|  3  |       4 |                                   tricolour salad | Healthy Food |     veg | vinegar, honey/sugar, soy sauce, salt, garlic ... |
+|  4  |       5 |                                    christmas cake |      Dessert |     veg | christmas dry fruits (pre-soaked), orange zest... |
+| ... |     ... |                                               ... |          ... |     ... |                                               ... |
+| 395 |     396 |                                      Kimchi Toast |       Korean |     veg |  cream cheese, chopped kimchi, scallions,count... |
+| 396 |     397 | Tacos de Gobernador (Shrimp, Poblano, and Chee... |      Mexican | non-veg | poblano chiles, bacon, shrips, red salsa, garl... |
+| 397 |     398 |   Melted Broccoli Pasta With Capers and Anchovies |       French | non-veg |  broccoli,Bread Crumbs, anchovy fillets, garli... |
+| 398 |     399 |                 Lemon-Ginger Cake with Pistachios |      Dessert | non-veg | egg yolks,lemon juice, unsalted butter, all pu... |
+| 399 |     400 |                       Rosemary Roasted Vegetables | Healthy Food |     veg | kosher salt, rosemary, garlic, potato, olive o... |
 
-Tabel 2. Informasi lebih lanjut mengenai dataset
+Tabel 2. Dataset _foods.csv_ setelah di _rename_
 
-|       |        beds |       baths |         size |    lot_size |     zip_code |        price |
-|------:|------------:|------------:|-------------:|------------:|-------------:|-------------:|
-| count | 2016.000000 | 2016.000000 |  2016.000000 | 1669.000000 |  2016.000000 | 2.016000e+03 |
-|  mean |    2.857639 |    2.159970 |  1735.740575 | 3871.059694 | 98123.638889 | 9.636252e+05 |
-|  std  |    1.255092 |    1.002023 |   920.132591 | 2719.402066 |    22.650819 | 9.440954e+05 |
-|  min  |    1.000000 |    0.500000 |   250.000000 |    0.230000 | 98101.000000 | 1.590000e+05 |
-|  25%  |    2.000000 |    1.500000 |  1068.750000 | 1252.000000 | 98108.000000 | 6.017500e+05 |
-|  50%  |    3.000000 |    2.000000 |  1560.000000 | 4000.000000 | 98117.000000 | 8.000000e+05 |
-|  75%  |    4.000000 |    2.500000 |  2222.500000 | 6000.000000 | 98126.000000 | 1.105250e+06 |
-|  max  |   15.000000 |    9.000000 | 11010.000000 | 9998.000000 | 98199.000000 | 2.500000e+07 |
+|     | id_makanan |                                      nama_makanan | jenis_makanan | veg_non | deskripsi                                         |
+|----:|-----------:|--------------------------------------------------:|--------------:|--------:|---------------------------------------------------|
+|  0  |          1 |                               summer squash salad |  Healthy Food |     veg | white balsamic vinegar, lemon juice, lemon rin... |
+|  1  |          2 |                              chicken minced salad |  Healthy Food | non-veg | olive oil, chicken mince, garlic (minced), oni... |
+|  2  |          3 |                              sweet chilli almonds |         Snack |     veg | almonds whole, egg white, curry leaves, salt, ... |
+|  3  |          4 |                                   tricolour salad |  Healthy Food |     veg | vinegar, honey/sugar, soy sauce, salt, garlic ... |
+|  4  |          5 |                                    christmas cake |       Dessert |     veg | christmas dry fruits (pre-soaked), orange zest... |
+| ... |        ... |                                               ... |           ... |     ... |                                               ... |
+| 395 |        396 |                                      Kimchi Toast |        Korean |     veg |  cream cheese, chopped kimchi, scallions,count... |
+| 396 |        397 | Tacos de Gobernador (Shrimp, Poblano, and Chee... |       Mexican | non-veg | poblano chiles, bacon, shrips, red salsa, garl... |
+| 397 |        398 |   Melted Broccoli Pasta With Capers and Anchovies |        French | non-veg |  broccoli,Bread Crumbs, anchovy fillets, garli... |
+| 398 |        399 |                 Lemon-Ginger Cake with Pistachios |       Dessert | non-veg | egg yolks,lemon juice, unsalted butter, all pu... |
+| 399 |        400 |                       Rosemary Roasted Vegetables |  Healthy Food |     veg | kosher salt, rosemary, garlic, potato, olive o... |
 
-Dapat dilihat pada tabel 2 untuk rata-rata harga rumah yaitu berada pada angka 963 ribu _dollar US_. Untuk harga rumah yang paling murah berada di angka 159 ribu _dollar US_ dan yang termahal mencapai angka 2,5 juta _dollar US_.
+  Jumlah data pada dataset _ratings.csv_ sebanyak 512 data, yang terbagi dalam 3 kolom. Kolom pertama yaitu 'User_ID' yang di _rename_ menjadi 'user_id' memiliki 512 data bertipe _integer_ dengan 101 data yang unik, kolom 'Food_ID' yang di _rename_ menjadi 'id_makanan' memiliki 512 data bertipe _integer_ dengan 310 data yang unik, kolom 'Rating' yang di _rename_ menjadi 'rating' memiliki 512 data bertipe _integer_. Terdapat 1 nilai NaN pada dataset ini. Dataset dapat lebih lanjut dilihat pada Tabel 3 dan 4.
+
+Tabel 3. Dataset _ratings.csv_ sebelum di _rename_
+
+|     | User_ID | Food_ID | Rating |
+|----:|--------:|--------:|-------:|
+|  0  |     1.0 |    88.0 |    4.0 |
+|  1  |     1.0 |    46.0 |    3.0 |
+|  2  |     1.0 |    24.0 |    5.0 |
+|  3  |     1.0 |    25.0 |    4.0 |
+|  4  |     2.0 |    49.0 |    1.0 |
+| ... |     ... |     ... |    ... |
+| 507 |    99.0 |    22.0 |    1.0 |
+| 508 |   100.0 |    24.0 |   10.0 |
+| 509 |   100.0 |   233.0 |   10.0 |
+| 510 |   100.0 |    29.0 |    7.0 |
+| 511 |     NaN |     NaN |    NaN |
+
+Tabel 4. Dataset _ratings.csv_ setelah di _rename_
+
+|     | user_id | id_makanan | rating |
+|----:|--------:|-----------:|-------:|
+|  0  |     1.0 |       88.0 |    4.0 |
+|  1  |     1.0 |       46.0 |    3.0 |
+|  2  |     1.0 |       24.0 |    5.0 |
+|  3  |     1.0 |       25.0 |    4.0 |
+|  4  |     2.0 |       49.0 |    1.0 |
+| ... |     ... |        ... |    ... |
+| 507 |    99.0 |       22.0 |    1.0 |
+| 508 |   100.0 |       24.0 |   10.0 |
+| 509 |   100.0 |      233.0 |   10.0 |
+| 510 |   100.0 |       29.0 |    7.0 |
+| 511 |     NaN |        NaN |    NaN |
+
+Tabel 5. Deskripsi dataset _ratings.csv_
+
+|       |    user_id | id_makanan |     rating |
+|------:|-----------:|-----------:|-----------:|
+| count | 511.000000 | 511.000000 | 511.000000 |
+|  mean |  49.068493 | 125.311155 |   5.438356 |
+|  std  |  28.739213 |  91.292629 |   2.866236 |
+|  min  |   1.000000 |   1.000000 |   1.000000 |
+|  25%  |  25.000000 |  45.500000 |   3.000000 |
+|  50%  |  49.000000 | 111.000000 |   5.000000 |
+|  75%  |  72.000000 | 204.000000 |   8.000000 |
+|  max  | 100.000000 | 309.000000 |  10.000000 |
+
+Pada tabel 5 untuk rata-rata rating yaitu berada pada angka 5,4 bintang dengan skala bintang dari 1-10.
 
 ### Variabel-variabel pada House Price Prediction dataset adalah sebagai berikut:
 
