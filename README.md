@@ -50,8 +50,6 @@
 
 ## Data Understanding
 
-Pasar _real estate_, seperti yang ada di Seattle, Washing, USA, menghadirkan peluang menarik bagi analis data untuk menganalisis dan memprediksi ke mana harga properti bergerak. Prediksi harga properti menjadi semakin penting dan menguntungkan. Harga properti merupakan indikator yang baik dari kondisi pasar secara keseluruhan dan kesehatan ekonomi suatu negara. Mempertimbangkan data yang diberikan, dalam memperdebatkan sejumlah besar catatan penjualan properti yang disimpan dalam format yang tidak diketahui dan dengan masalah kualitas data yang tidak diketahui.
-
   Data yang digunakan dalam proyek ini bersumber dari [Kaggle-Food Recommendation System](https://www.kaggle.com/samuelcortinhas/schemersays/food-recommendation-system)
 
   Jumlah data pada dataset _foods.csv_ sebanyak 400 data, yang terbagi dalam 5 kolom. Kolom pertama yaitu 'Food_ID' yang di _rename_ menjadi 'id_makanan' memiliki 400 data unik bertipe _integer_, kolom 'Name' yang di _rename_ menjadi 'nama_makanan' memiliki 400 data unik bertipe _object_, kolom 'C_Type' yang di _rename_ menjadi 'jenis_makanan' memiliki 400 data bertipe _object_ dengan 16 jenis makanan yang unik, kolom 'Veg_Non' yang di _rename_ menjadi 'veg_non' memiliki 400 data bertipe _object_, kolom 'Describe' yang di _rename_ menjadi 'deskripsi' memiliki 400 data unik bertipe _object_. Dataset dapat lebih lanjut dilihat pada Tabel 1 dan 2.
@@ -137,106 +135,71 @@ Tabel 5. Deskripsi dataset _ratings.csv_
 
 Pada tabel 5 untuk rata-rata rating yaitu berada pada angka 5,4 bintang dengan skala bintang dari 1-10.
 
-### Variabel-variabel pada House Price Prediction dataset adalah sebagai berikut:
+### Variabel-variabel pada _Food Recommendation System_ adalah sebagai berikut:
 
-- beds : jumlah kamar tidur di properti.
-- baths : Jumlah kamar mandi di properti. Catatan 0,5 sesuai dengan setengah bak mandi yang memiliki wastafel dan toilet tetapi tidak ada bak mandi atau pancuran.
-- size : Total luas lantai properti.
-- size_units : Unit pengukuran sebelumnya.
-- lot_size : Total luas tanah tempat properti berada. Tanah itu milik pemilik rumah.
-- lot_size_units : Unit pengukuran sebelumnya.
-- zip_code : Kode pos. Ini adalah kode pos yang digunakan di AS.
-- price : Harga properti dijual seharga _(dollar AS)_.
+Dataset _foods.csv_
+
+- id_makanan : Nomor id dari masing-masing makanan.
+- nama_makanan : Nama dari masing-masing makanan dari sebuah restoran ('summer squash salad' 'chicken minced salad' 'sweet chilli almonds'
+ 'tricolour salad' 'christmas cake' 'japanese curry arancini with barley salsa' 'chocolate nero cookies' etc).
+- jenis_makanan : Jenis makanan apakah makanan tersebut termasuk 'Healthy_Food' 'Snack' 'Dessert' 'Japanese' 'Indian' 'French' 'Mexican'
+ 'Italian' 'Chinese' 'Beverage' 'Thai' 'Korean' 'Vietnames' 'Nepalese' 'Spanish'.
+- veg_non : Mengidentifikasi apakah makanan tersebut termasuk dalam Vegan atau Non-Vegan.
+- deskripsi : Deskripsi komposisi dari makanan.
+
+Dataset _ratings.csv_
+
+- user_id : Nomor id pelanggan yang memberikan rating pada makanan.
+- id_makanan : Nomor id dari masing-masing makanan.
+- rating : Rating dari pelanggan tentang makanan tersebut.
 
 ### Exploratory Data Analysis
 
-- Menangani _missing value_
+- Menghapus nilai _NaN_
 
-  Dari hasil output, terlihat bahwa kolom "lot_size" dan "lot_size_units" memiliki nilai yang hilang (NaN) sebanyak 347 data. Dengan menggunakan teknik _dropna_, sekarang _DataFrame_ rumah tidak mengandung baris dengan nilai yang hilang di kolom "lot_size" dan "lot_size_units".
+  Dari hasil output, terlihat bahwa baris terakhir dataset _ratings.csv_ memiliki nilai _NaN_. Dengan menggunakan teknik _dropna_, sekarang _DataFrame_ ratings tidak mengandung baris dengan nilai yang hilang.
 
-  Tabel 3. Dataset sudah bersih dari _missing value_
+  Tabel 6. Dataset sudah bersih dari nilai _NaN_
 
-  |      | beds | baths | size   | size_units | lot_size | lot_size_units | zip_code | price     |
-  |-----:|-----:|-------|--------|------------|----------|----------------|----------|-----------|
-  | 0    | 3    | 2.5   | 2590.0 | sqft       | 6000.00  | sqft           | 98144    | 795000.0  |
-  | 1    | 4    | 2.0   | 2240.0 | sqft       | 0.31     | acre           | 98106    | 915000.0  |
-  | 2    | 4    | 3.0   | 2040.0 | sqft       | 3783.00  | sqft           | 98107    | 950000.0  |
-  | 3    | 4    | 3.0   | 3800.0 | sqft       | 5175.00  | sqft           | 98199    | 1950000.0 |
-  | 5    | 2    | 2.0   | 1190.0 | sqft       | 1.00     | acre           | 98107    | 740000.0  |
-  | ...  | ...  | ...   | ...    | ...        | ...      | ...            | ...      | ...       |
-  | 2009 | 3    | 3.5   | 1680.0 | sqft       | 1486.00  | sqft           | 98126    | 675000.0  |
-  | 2010 | 2    | 2.0   | 1400.0 | sqft       | 0.34     | acre           | 98199    | 699950.0  |
-  | 2011 | 3    | 2.0   | 1370.0 | sqft       | 0.50     | acre           | 98112    | 910000.0  |
-  | 2013 | 4    | 2.0   | 2140.0 | sqft       | 6250.00  | sqft           | 98199    | 1150000.0 |
-  | 2015 | 3    | 2.0   | 1710.0 | sqft       | 4267.00  | sqft           | 98133    | 659000.0  |
-
-- Menangani _outliers_
-
-  Pada kasus ini, akan dideteksi _outliers_ dengan teknik visualisasi data _(boxplot)_. Kemudian, _outliers_ akan ditangani dengan teknik _IQR method_. setelah ditangani dengan metode _IQR method_, dataset yang tersisa menjadi 1682 data.
-
-  Gambar 1. Deteksi _outliers_ pada kolom 'beds'
-
-  ![beds](https://github.com/fannof/project_predictive_analysis/assets/99071605/30d6a272-05ce-40f2-b8f3-6b172301e2e0)
-
-
-  Terlihat pada gambar 1, terdapat 4 _outliers_ di kolom 'beds'.
-
-  Gambar 2. Deteksi _outliers_ pada kolom 'baths'
-
-  ![image](https://github.com/fannof/project_predictive_analysis/assets/99071605/5e8ae48e-c7c4-4c26-8fd9-7829b2478f78)
-
-  Terlihat pada gambar 2, terdapat 6 _outliers_ di kolom 'baths'
-
-  Gambar 3. Deteksi _outliers_ pada kolom 'size'
-
-  ![image](https://github.com/fannof/project_predictive_analysis/assets/99071605/f97ce15a-a3cc-49be-be23-00760a9470b2)
-
-  Pada gambar 3, terdapat banyak sekali _outliers_, semua _outliers_ ini akan ditangani dengan metode _IQR Method_.
-
-- _Univariate analysis_
-
-  Selanjutnya, akan dilakukan proses analisis data dengan teknik _Univariate EDA_. Pertama, lakukan analisis pada fitur numerik.
-Peningkatan harga rumah sebanding dengan penurunan jumlah sampel. Hal ini dapat dilihat jelas dari histogram "price" pada gambar 4, dimana grafiknya mengalami penurunan seiring dengan semakin banyaknya jumlah sampel (sumbu x).
-Semakin tinggi 'size', jumlah 'beds', dan jumlah 'baths' dalam rumah, maka semakin mahal pula harga rumah.
-
-  Gambar 4. Plot grafik masing-masing fitur
-
-  ![image](https://github.com/fannof/project_predictive_analysis/assets/99071605/1d2c2658-3292-4522-a8a7-100deff8dd2b)
-
-- _Multivariate analysis_
-
-  Selanjutnya, akan dilakukan analisis data pada fitur numerik menggunakan teknik _Multivariate EDA_ menggunakan fungsi _pairplot()_ dan juga akan mengobservasi korelasi antara fitur numerik dengan fitur target menggunakan fungsi _corr()_.
-  Pada gambar 5 yaitu pola sebaran data grafik _pairplot_, terlihat fitur "size" memiliki korelasi positif dengan fitur "price". Sedangkan kedua fitur "lot_size" dan "price" tidak memliki korelasi karena tidak membetuk pola.
-
-  Gambar 5. Grafik korelasi antar fitur numerik dan fitur target
-
-  ![image](https://github.com/fannof/project_predictive_analysis/assets/99071605/c38c6c64-e41a-45eb-9022-7a6d66971ff9)
-
-  Gambar 6. Matrik korelasi antar fitur numerik
-
-  ![image](https://github.com/fannof/project_predictive_analysis/assets/99071605/570e873b-5804-431d-b0f2-10efdbed5690)
-
-  Pada gambar 6, grafik korelasi terlihat bahwa fitur 'beds', 'baths', dan 'size' memiliki skor korelasi yang besar dengan fitur target 'price'. Artinya, fitur 'price' berkorelasi tinggi dengan ketiga fitur tersebut. Sementara itu, fitur 'lot_size' dan 'zip_code' memiliki korelasi yang sangat kecil sehingga fitur tersebut dapat _di-drop_.
-
-  Tabel 4. _Dataframe_ setelah fitur yang tidak dibutuhkan _di-drop_
-
-  |   | beds | baths |   size |    price |
-  |--:|-----:|------:|-------:|---------:|
-  | 0 |    3 |   2.5 | 2590.0 | 795000.0 |
-  | 1 |    4 |   2.0 | 2240.0 | 915000.0 |
-  | 2 |    4 |   3.0 | 2040.0 | 950000.0 |
-  | 5 |    2 |   2.0 | 1190.0 | 740000.0 |
-  | 6 |    1 |   1.0 |  670.0 | 460000.0 |
-
-  Gambar 7. Grafik plot antar fitur numerik setelah fitur yang tidak dibutuhkan _di-drop_
-
-  ![image](https://github.com/fannof/project_predictive_analysis/assets/99071605/89e1a48b-9af0-426a-a357-16fcf9c87624)
+  |     | user_id | id_makanan | rating |
+  |----:|--------:|-----------:|-------:|
+  |  0  |     1.0 |       88.0 |    4.0 |
+  |  1  |     1.0 |       46.0 |    3.0 |
+  |  2  |     1.0 |       24.0 |    5.0 |
+  |  3  |     1.0 |       25.0 |    4.0 |
+  |  4  |     2.0 |       49.0 |    1.0 |
+  | ... |     ... |        ... |    ... |
+  | 506 |    99.0 |       65.0 |    7.0 |
+  | 507 |    99.0 |       22.0 |    1.0 |
+  | 508 |   100.0 |       24.0 |   10.0 |
+  | 509 |   100.0 |      233.0 |   10.0 |
+  | 510 |   100.0 |       29.0 |    7.0 |
 
 ## Data Preparation
 
+- Menggabungkan seluruh dataset
+
+  Menggunakan _library pandas_ dan fungsi _merge()_ untuk menggabungkan dataset dengan kolom id_makanan sebagai acuan penggabungan.
+
+  Tabel 7. Dataset setelah digabung
+
+  |     | id_makanan |                                      nama_makanan | jenis_makanan | veg_non |                                          dskripsi | user_id | rating |
+  |----:|-----------:|--------------------------------------------------:|--------------:|--------:|--------------------------------------------------:|--------:|--------|
+  |  0  |          1 |                               summer squash salad |  Healthy_Food |     veg | white balsamic vinegar, lemon juice, lemon rin... |    49.0 |    5.0 |
+  |  1  |          1 |                               summer squash salad |  Healthy_Food |     veg | white balsamic vinegar, lemon juice, lemon rin... |    71.0 |   10.0 |
+  |  2  |          2 |                              chicken minced salad |  Healthy_Food | non-veg | olive oil, chicken mince, garlic (minced), oni... |     9.0 |    3.0 |
+  |  3  |          2 |                              chicken minced salad |  Healthy_Food | non-veg | olive oil, chicken mince, garlic (minced), oni... |    22.0 |    5.0 |
+  |  4  |          2 |                              chicken minced salad |  Healthy_Food | non-veg | olive oil, chicken mince, garlic (minced), oni... |    39.0 |   10.0 |
+  | ... |        ... |                                               ... |           ... |     ... |                                               ... |     ... |    ... |
+  | 597 |        396 |                                      Kimchi Toast |        Korean |     veg |  cream cheese, chopped kimchi, scallions,count... |     NaN |    NaN |
+  | 598 |        397 | Tacos de Gobernador (Shrimp, Poblano, and Chee... |       Mexican | non-veg | poblano chiles, bacon, shrips, red salsa, garl... |     NaN |    NaN |
+  | 599 |        398 |   Melted Broccoli Pasta With Capers and Anchovies |        French | non-veg |  broccoli,Bread Crumbs, anchovy fillets, garli... |     NaN |    NaN |
+  | 600 |        399 |                 Lemon-Ginger Cake with Pistachios |       Dessert | non-veg | egg yolks,lemon juice, unsalted butter, all pu... |     NaN |    NaN |
+  | 601 |        400 |                       Rosemary Roasted Vegetables |  Healthy_Food |     veg | kosher salt, rosemary, garlic, potato, olive o... |     NaN |    NaN |
+
 - _Train-Test-Split_
 
-  Proses membagi himpunan data menjadi data pelatihan dan pengujian adalah langkah yang diperlukan sebelum membuat model. Ini penting dilakukan untuk memperkuat semua data yang tersedia untuk menilai beberapa generalisasi model ke data baru. Tercatat bahwa setiap transformasi data yang dilakukan juga berfungsi sebagai komponen model. Karena data _test set_ (uji) mentah, semua transformasi harus dilakukan pada data latih. Data dibagi menjadi 80% data _training_ dan 20% data _testing_, karena jumlah seluruh data termasuk kecil, maka diperlukan lebih banyak data latih.
+  Proses membagi himpunan data menjadi data pelatihan dan pengujian adalah langkah yang diperlukan sebelum membuat model. Hal ini penting dilakukan untuk memperkuat semua data yang tersedia untuk menilai beberapa generalisasi model ke data baru. Tercatat bahwa setiap transformasi data yang dilakukan juga berfungsi sebagai komponen model. Karena data _test set_ (uji) mentah, semua transformasi harus dilakukan pada data latih. Data dibagi menjadi 80% data _training_ dan 20% data _testing_, karena jumlah seluruh data termasuk kecil, maka diperlukan lebih banyak data latih.
 
   Total sampel seluruh dataset: 1380
 
