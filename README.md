@@ -16,7 +16,7 @@
 
 - Rumusan Masalah dan Solusi Permasalahan
 
-  Banyaknya pilihan makanan yang tersedia di restoran dapat membuat pelanggan yang berkunjung merasa ragu untuk memilih makanan, dan fenomena _overchoice_ pun tidak dapat dihindari. Salah satu solusi untuk memastikan kepuasan pelanggan adalah pelayan atau pramusaji merekomendasikan item menu kepada pelanggan. Namun, ini juga menyebabkan mereka menjadi letih dan gagal mengenali preferensi setiap pelanggan. Tidak setiap pelanggan memiliki preferensi yang sama dengan pelayan atau pramusaji; Sebaliknya, setiap pelanggan memiliki preferensi unik yang berbeda dari pelanggan lain, serta lamanya waktu yang dibutuhkan oleh pelanggan yang mengalami fenomena _overchoice_, yang menyebabkan pelayan menjadi 'menyerah' ketika melayani pelanggan.
+  Banyaknya pilihan makanan yang tersedia di restoran dapat membuat pelanggan yang berkunjung merasa ragu untuk memilih makanan, dan fenomena _overchoice_ pun tidak dapat dihindari. Salah satu solusi untuk memastikan kepuasan pelanggan adalah pelayan atau pramusaji merekomendasikan item menu kepada pelanggan. Namun, ini juga menyebabkan mereka menjadi letih dan gagal mengenali preferensi setiap pelanggan. Tidak setiap pelanggan memiliki preferensi yang sama dengan pelayan atau pramusaji. Sebaliknya, setiap pelanggan memiliki preferensi unik yang berbeda dari pelanggan lain, serta lamanya waktu yang dibutuhkan oleh pelanggan yang mengalami fenomena _overchoice_, yang menyebabkan pelayan menjadi 'menyerah' ketika melayani pelanggan.
 
   Karena itu, sistem rekomendasi diperlukan untuk menyarankan makanan yang tersedia di restoran kepada pelanggan untuk membantu mereka dalam memilih makanan yang mereka inginkan, menghemat waktu mereka ketika pemesanan menu, dan membantu restoran dalam memahami perilaku pelanggan. Dalam  proyek ini, peneliti mengabaikan semua menu minuman pada restoran dikarenakan jumlah menu minuman yang tersedia pada restoran hanya tersedia beberapa buah menu minuman dan dianggap terlalu sedikit untuk dimasukkan kedalam sistem yang baru.
 
@@ -279,7 +279,7 @@ Dataset _ratings.csv_
 
   Proses membagi himpunan data menjadi data pelatihan dan pengujian adalah langkah yang diperlukan sebelum membuat model. Hal ini penting dilakukan untuk memperkuat semua data yang tersedia untuk menilai beberapa generalisasi model ke data baru. Tercatat bahwa setiap transformasi data yang dilakukan juga berfungsi sebagai komponen model. Karena data _test set_ (uji) mentah, semua transformasi harus dilakukan pada data latih. Data dibagi menjadi 80% data _training_ dan 20% data _testing_.
 
- [[ 35  19]
+   [[ 35  19]
  [ 60 232]
  [ 66 244]
  ...
@@ -360,19 +360,69 @@ Model akan dikembangkan dengan 2 metode yang berbeda. Kedua metode tersebut adal
 
    Di sisi lain, _Item-Based Collaborative Filtering_ memiliki struktur yang mirip dengan _User Based C_. Jika pemfilteran _user-based_ sebelumnya menunjukkan korelasi _user_ ke _user_, maka pemfilteran _item-based_ akan menunjukkan korelasi item yang diminati oleh sistem pengguna lain. Item-item akan terus terakumulasi. Salah satu keuntungan dari metode _item-based  collaborative  filtering_ adalah kemampuannya untuk mengeksplorasi jejaring sosial implisit, yang berpotensi meningkatkan akurasi rekomendasi yang dibuat.
 
-  - Kelebihan dan kekurangan dari setiap algoritma yang digunakan:
+   Mendapatkan rekomendasi makanan dengan metode _Collaborative Filtering_
 
-    -- _k-NN_ memiliki _MSE_ yang tinggi pada data uji, mungkin karena model tidak dapat menangkap pola yang kompleks dalam data tersebut.
+   Tahap pertama yaitu ambil sampel user secara acak dan definisikan variabel food_not_displayed yang merupakan daftar makanan yang belum pernah dilihat oleh pelanggan. Hal ini dilakukan karena daftar food_not_displayed inilah yang akan menjadi makanan yang direkomendasikan.
 
-    -- _Random Forest_ memiliki _MSE_ yang rendah pada data latih, menunjukkan kemampuan baik dalam menyesuaikan dengan data latih. Namun, terdapat peningkatan yang signifikan pada _MSE_ pada data uji, mungkin menunjukkan adanya _overfitting_.
+   10/10 [==============================] - 0s 1ms/step
+   
+    Showing recommendations for users: 80.0
+   
+    ===========================
+   
+    Food with high ratings from user
+   
+    --------------------------------
+   
+    apple rabdi : Dessert
+   
+    christmas tree pizza : Italian
+   
+    amritsari chicken masala : Indian
+   
+    banana chips : Snack
+   
+    --------------------------------
+   
+    Top 10 food recommendation
+   
+    --------------------------------
+   
+    andhra pan fried pomfret : Indian
+   
+    corn pulao : Indian
+   
+    zucchini methi pulao : Indian
+   
+    vegetable bruschetta : Italian
+   
+    strawberry & pistachio breton tart : Dessert
+   
+    bread chana basket : Indian
+   
+    corn & jalapeno poppers : Mexican
+   
+    mixed beans salad : Healthy_Food
+   
+    fruit cube salad : Healthy_Food
+   
+    tandoori chicken : Indian
 
-    -- _Boosting_ memberikan hasil yang cukup baik pada data uji, menunjukkan kemampuan model untuk mengatasi kompleksitas data.
+   Hasil di atas adalah rekomendasi untuk user dengan id 80. Dari _output_ tersebut, didapat perbandingan antara _food with high ratings from user_ dan _Top 10 food recommendation_ untuk user.
 
-  - Alasan memlilih Model _Boosting Algorithm_
+   Beberapa makanan rekomendasi menyediakan kategori jenis makanan yang sesuai dengan rating user. Diperoleh 5 rekomendasi makanan dengan kategori jenis makanan 'Indian', 2 rekomendasi makanan dengan kategori 'healthy_food', 1 rekomendasi makanan kategori 'Dessert', 1 rekomendasi makanan kategori 'Mexican', dan 1 makanan dengan kategori 'Italian'.
 
-    Dari ketiga model diatas, _Boosting_ memiliki _MSE_ yang relatif lebih rendah pada data uji, menunjukkan kinerja yang lebih baik dibandingkan dengan _k-NN_ dan _Random Forest_ dalam dataset harga rumah ini.
+  - Kelebihan dan kekurangan _Content-Based Filtering_:
 
-    Berdasarkan hasil tersebut, solusi terbaik pada kasus ini adalah menggunakan model _Boosting (AdaBoostRegressor)_ karena memberikan performa yang lebih baik dalam memprediksi harga rumah pada data yang belum pernah dilihat sebelumnya.
+    -- Kelebihan : Personalisasi yang tinggi, metode ini menawarkan rekomendasi yang dipersonalisasi berdasarkan preferensi pengguna dan tidak memerlukan data eksternal, _Content-based filtering_ tidak memerlukan data eksternal atau informasi tentang pengguna lain.
+
+    -- Kekurangan : Keterbatasan dalam diversifikasi, _Content-based filtering_ cenderung merekomendasikan item yang sangat mirip dengan item yang telah dipilih pengguna sebelumnya dan mempunyai keterbatasan representasi fitur, efektivitas _content-based filtering_ sangat bergantung pada kualitas representasi fitur item.
+
+  - Kelebihan dan kekurangan _Collaborative Filtering_:
+
+    -- Kelebihan : Tidak memerlukan informasi produk, metode ini tidak memerlukan informasi eksternal tentang item untuk memberikan rekomendasi dan dapat menganalisis interaksi pengguna, metode ini memanfaatkan interaksi pengguna dengan item untuk membuat rekomendasi. 
+
+    -- Kekurangan : Masalah ketergantungan pada data historis, rekomendasi dalam _collaborative filtering_ sangat bergantung pada data historis interaksi pengguna dengan item dan permasalahan sparsitas data, _Collaborative filtering_ dapat mengalami kesulitan dalam memberikan rekomendasi jika data interaksi antara pengguna dan item sangat jarang. 
 
 ## Evaluation
 
