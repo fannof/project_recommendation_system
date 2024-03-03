@@ -457,3 +457,8 @@ Model akan dikembangkan dengan 2 metode yang berbeda. Kedua metode tersebut adal
      
 ## REFERENCES
 
+[1]	H. Hartatik, S. D. Nurhayati, and W. Widayani, “Sistem Rekomendasi Wisata Kuliner di Yogyakarta dengan Metode Item-Based Collaborative Filtering,” J. Autom. Comput. Inf. Syst., vol. 1, no. 2, pp. 55–63, 2021, doi: 10.47134/jacis.v1i2.8.
+
+[2]	Kosim and R. Prihandi, “SISTEM REKOMENDASI MENU MINUMAN DENGAN METODE CONTENT – BASED FILTERING BERBASIS ANDROID PADA MUBTADA KOPI,” J. Comput. Sci. Artif. Intell., vol. 1, no. 1, pp. 43–69, 2024.
+
+[3]	G. Yunanda, D. Nurjanah, and S. Meliana, “Recommendation System from Microsoft News Data using TF-IDF and Cosine Similarity Methods,” Build. Informatics, Technol. Sci., vol. 4, no. 1, pp. 277–284, 2022, doi: 10.47065/bits.v4i1.1670.
