@@ -6,13 +6,13 @@
 
 - Latar belakang
 
-  Makanan sangat penting bagi manusia, baik sebagai kebutuhan primer maupun sebagai komponen kehidupan sehari-hari seseorang. Kemerosotan ekonomi yang telah mempengaruhi beberapa industri telah menyebabkan peluang baru yang membuat industri kuliner, khususnya divisi _online_-nya, semakin sukses. Wisata kuliner menjadi hal terpenting di dunia kuliner. Memanfaatkan informasi yang tersedia di internet membuat banyak masyarakat lebih sulit untuk memilih kebutuhan mereka.
+  Makanan sangat penting bagi manusia, baik sebagai kebutuhan primer maupun sebagai komponen kehidupan sehari-hari seseorang. Kemerosotan ekonomi yang telah mempengaruhi beberapa industri telah menyebabkan peluang baru yang membuat industri kuliner, khususnya divisi _online_-nya, semakin sukses. Wisata kuliner menjadi hal terpenting di dunia kuliner. Memanfaatkan informasi yang tersedia di internet membuat banyak masyarakat lebih sulit untuk memilih kebutuhan mereka [1].
 
-  _Overchoice_, juga dikenal sebagai _overload of choices_, adalah gangguan kognitif di mana orang merasa sulit untuk membuat keputusan ketika dihadapkan dengan sejumlah besar pilihan. Mereka sering memiliki banyak pilihan yang sangat melelahkan secara mental karena setiap opsi harus dipertimbangkan dengan cermat untuk memilih opsi terbaik. Selama periode kemajuan teknologi ini, setiap orang dihadapkan pada pilihan yang jumlahnya tak terbatas. Fenomena ini, yang dikenal sebagai _overload of choice_, semakin banyak terjadi dalam kehidupan sehari-hari, seperti memilih makanan di suatu restoran. Pelanggan disajikan dari berbagai pilihan menu, termasuk _snack_, _dessert_, _beverage_, dan makanan lainnya yang sesuai.
+  _Overchoice_, juga dikenal sebagai _overload of choices_, adalah gangguan kognitif di mana orang merasa sulit untuk membuat keputusan ketika dihadapkan dengan sejumlah besar pilihan. Mereka sering memiliki banyak pilihan yang sangat melelahkan secara mental karena setiap opsi harus dipertimbangkan dengan cermat untuk memilih opsi terbaik. Selama periode kemajuan teknologi ini, setiap orang dihadapkan pada pilihan yang jumlahnya tak terbatas. Fenomena ini, yang dikenal sebagai _overload of choice_, semakin banyak terjadi dalam kehidupan sehari-hari, seperti memilih makanan di suatu restoran. Pelanggan disajikan dari berbagai pilihan menu, termasuk _snack_, _dessert_, _beverage_, dan makanan lainnya yang sesuai [2].
 
-  Setiap item makanan dalam kategori tersebut memiliki rasa dan harga unik yang juga bervariasi. Pertimbangan-pertimbangan ini menciptakan kompleksitas dalam arti bahwa pengguna dipaksa untuk mengeluarkan lebih banyak waktu dan energi untuk mendapatkan makanan yang sesuai. Selain itu, akan timbul keraguan dan kecemasan yang akan  mengakibatkan  memilih makanan yang tidak  disukai dan takut  kecewa  akan  pilihannya. Berdasarkan masalah tersebut, Sistem Rekomendasi diperlukan untuk membantu dalam memilih makanan yang diinginkan.
+  Setiap item makanan dalam kategori tersebut memiliki rasa dan harga unik yang juga bervariasi. Pertimbangan-pertimbangan ini menciptakan kompleksitas dalam arti bahwa pengguna dipaksa untuk mengeluarkan lebih banyak waktu dan energi untuk mendapatkan makanan yang sesuai. Selain itu, akan timbul keraguan dan kecemasan yang akan  mengakibatkan  memilih makanan yang tidak  disukai dan takut  kecewa  akan  pilihannya. Berdasarkan masalah tersebut, Sistem Rekomendasi diperlukan untuk membantu dalam memilih makanan yang diinginkan [2].
 
-  Sistem rekomendasi adalah sistem yang menyarankan informasi yang berguna atau menunjukkan apa yang perlu dilakukan oleh pengguna untuk mencapai tujuan, yang bisa berupa memilih produk yang diinginkan. Dengan demikian, pelanggan dapat memilih produk yang lebih mudah beradaptasi dan lebih efektif dalam mengevaluasi produk yang diperlukan. Secara umum, ada tiga sistem rekomendasi yang banyak digunakan yaitu: _Content Based (CB)_, _Collaborative Filtering (CF)_, dan _Hybrid_.
+  Sistem rekomendasi adalah sistem yang menyarankan informasi yang berguna atau menunjukkan apa yang perlu dilakukan oleh pengguna untuk mencapai tujuan, yang bisa berupa memilih produk yang diinginkan. Dengan demikian, pelanggan dapat memilih produk yang lebih mudah beradaptasi dan lebih efektif dalam mengevaluasi produk yang diperlukan. Secara umum, ada tiga sistem rekomendasi yang banyak digunakan yaitu: _Content Based (CB)_, _Collaborative Filtering (CF)_, dan _Hybrid_ [1].
 
 - Rumusan Masalah dan Solusi Permasalahan
 
@@ -22,7 +22,7 @@
 
 - Hasil Riset Terkait
 
-  Dalam jurnal yang berjudul "SISTEM REKOMENDASI MENU MINUMAN DENGAN METODE _CONTENT–BASED FILTERING_ BERBASIS _ANDROID_ PADA MUBTADA KOPI" yang dipublikasikan oleh Kosim dan Reza Prihandi(2024) dijelaskan bahwa _Overchoice_ adalah gangguan kognitif di mana orang mengalami kesulitan membuat keputusan ketika dihadapkan dengan banyak pilihan, memiliki terlalu banyak pilihan yang setara sangat menguras mental karena setiap pilihan harus mempertimbangkan beberapa alternatif untuk memilih pilihan yang terbaik. Pada masa perkembangan teknologi  ini dimana setiap harinya semua orang dihadapkan oleh pilihan yang tidak terhingga jumlahnya, fenomena _overchoice_ ini kerap terjadi dalam kehidupan sehari–hari seperti memilih minuman pada salah satu kedai café, maka dari itu _Recommendation System_ diperlukan untuk membantu dalam memilih minuman yang ingin dipesan dan untuk membantu dalam memilih pilihan lainnya. Teknik _content–based filtering_ akan mencoba mengambil preferensi pengguna secara eksplisit yaitu meminta pengguna untuk memilih preferensi yang diinginkan pengguna dari ke-6 fitur yang sudah dibuat sebelumnya lalu dihitung kecocokan preferensi pengguna dengan ke-6 fitur pada masing-masing–masing item menggunakan rumus _dotmatrix_. Setelah mendapatkan hasilnya, angka tersebut akan dirubah menjadi sebuah rating agar sesuai dengan pendekatan _Recommendation System_ yaitu _best rated_ yang dibuat secara _non-personalized_. Rating ini merupakan indikasi kecocokan preferensi pengguna dengan item yang terdapat pada daftar menu Mubtada Kopi. Semakin besar ratingnya, semakin cocok dengan preferensi pengguna.
+  Dalam jurnal yang berjudul "SISTEM REKOMENDASI MENU MINUMAN DENGAN METODE _CONTENT–BASED FILTERING_ BERBASIS _ANDROID_ PADA MUBTADA KOPI" yang dipublikasikan oleh Kosim dan Reza Prihandi(2024) dijelaskan bahwa _Overchoice_ adalah gangguan kognitif di mana orang mengalami kesulitan membuat keputusan ketika dihadapkan dengan banyak pilihan, memiliki terlalu banyak pilihan yang setara sangat menguras mental karena setiap pilihan harus mempertimbangkan beberapa alternatif untuk memilih pilihan yang terbaik. Pada masa perkembangan teknologi  ini dimana setiap harinya semua orang dihadapkan oleh pilihan yang tidak terhingga jumlahnya, fenomena _overchoice_ ini kerap terjadi dalam kehidupan sehari–hari seperti memilih minuman pada salah satu kedai café, maka dari itu _Recommendation System_ diperlukan untuk membantu dalam memilih minuman yang ingin dipesan dan untuk membantu dalam memilih pilihan lainnya. Teknik _content–based filtering_ akan mencoba mengambil preferensi pengguna secara eksplisit yaitu meminta pengguna untuk memilih preferensi yang diinginkan pengguna dari ke-6 fitur yang sudah dibuat sebelumnya lalu dihitung kecocokan preferensi pengguna dengan ke-6 fitur pada masing-masing–masing item menggunakan rumus _dotmatrix_. Setelah mendapatkan hasilnya, angka tersebut akan dirubah menjadi sebuah rating agar sesuai dengan pendekatan _Recommendation System_ yaitu _best rated_ yang dibuat secara _non-personalized_. Rating ini merupakan indikasi kecocokan preferensi pengguna dengan item yang terdapat pada daftar menu Mubtada Kopi. Semakin besar ratingnya, semakin cocok dengan preferensi pengguna [2].
 
 ## Business Understanding
 
@@ -134,8 +134,7 @@ Pada tabel 5 untuk rata-rata rating yaitu berada pada angka 5,4 bintang dengan s
 Dataset _foods.csv_
 
 - id_makanan : Nomor id dari masing-masing makanan.
-- nama_makanan : Nama dari masing-masing makanan dari sebuah restoran ('summer squash salad' 'chicken minced salad' 'sweet chilli almonds'
- 'tricolour salad' 'christmas cake' 'japanese curry arancini with barley salsa' 'chocolate nero cookies' etc).
+- nama_makanan : Nama dari masing-masing makanan dari sebuah restoran.
 - jenis_makanan : Jenis makanan apakah makanan tersebut termasuk 'Healthy_Food' 'Snack' 'Dessert' 'Japanese' 'Indian' 'French' 'Mexican'
  'Italian' 'Chinese' 'Beverage' 'Thai' 'Korean' 'Vietnames' 'Nepalese' 'Spanish'.
 - veg_non : Mengidentifikasi apakah makanan tersebut termasuk dalam Vegan atau Non-Vegan.
@@ -148,6 +147,18 @@ Dataset _ratings.csv_
 - rating : Rating dari pelanggan tentang makanan tersebut.
 
 ### Exploratory Data Analysis
+
+- Variabel nama_makanan
+
+  Setelah variabel nama_makanan dieskplorasi, terdapat total 400 jumlah data makanan yang unik, diantaranya adalah sebagai berikut:
+
+  'summer squash salad' 'chicken minced salad' 'sweet chilli almonds' 'tricolour salad' 'christmas cake' 'japanese curry arancini with barley salsa' 'chocolate nero cookies' 'lamb and chargrilled bell pepper soup' 'cream of almond soup''broccoli and almond soup' 'coconut lime quinoa salad' 'lemon honey glazed sous vide corn on the cob' 'watermelon and strawberry smoothie' 'peach, raspberry and nuts smoothie' 'almond and cranberry poha' 'almond and raw banana galawat' etc.
+
+- Variabel jenis_makanan
+
+  Setelah variabel nama_makanan dieksplorasi, terdapat total 15 jumlah data jenis makanan yang unik, diantaranya adalah:
+
+  'Healthy_Food' 'Snack' 'Dessert' 'Japanese' 'Indian' 'French' 'Mexican' 'Italian' 'Chinese' 'Beverage' 'Thai' 'Korean' 'Vietnames' 'Nepalese' 'Spanish'.
 
 - Menghapus _missing value_
 
@@ -229,7 +240,7 @@ Dataset _ratings.csv_
 
 - _TF-IDF Vectorizer_
 
-  Teknik untuk pembobotan kata-kata disebut _Term Frequency-Inverse Document Frequency (TF-IDF)_, yang menentukan seberapa sering sebuah kata muncul di setiap dokumen serta di semua dokumen. _Term Frequency (TF)_ dan _Inverse Document Frequency (IDF)_ membentuk TF-IDF. Nilai yang disebut "_Term Frequency_" menunjukkan seberapa sering istilah tertentu muncul dalam dokumen. Berat istilah meningkat seiring dengan berapa kali istilah tersebut muncul dalam dokumen. Tujuan dari _Inverse Document Frequency (IDF)_ adalah untuk mengurangi bobot istilah jika muncul di setiap dokumen. Berbeda dengan _TF_, nilainya meningkat dengan menurunnya frekuensi kata dalam dokumen. Setelah _TF-IDF_ diterapkan pada 'nama_makanan' dan 'jenis_makanan', hasilnya terdapat pada tabel 10.
+  Teknik untuk pembobotan kata-kata disebut _Term Frequency-Inverse Document Frequency (TF-IDF)_, yang menentukan seberapa sering sebuah kata muncul di setiap dokumen serta di semua dokumen. _Term Frequency (TF)_ dan _Inverse Document Frequency (IDF)_ membentuk TF-IDF. Nilai yang disebut "_Term Frequency_" menunjukkan seberapa sering istilah tertentu muncul dalam dokumen. Berat istilah meningkat seiring dengan berapa kali istilah tersebut muncul dalam dokumen. Tujuan dari _Inverse Document Frequency (IDF)_ adalah untuk mengurangi bobot istilah jika muncul di setiap dokumen. Berbeda dengan _TF_, nilainya meningkat dengan menurunnya frekuensi kata dalam dokumen [3]. Setelah _TF-IDF_ diterapkan pada 'nama_makanan' dan 'jenis_makanan', hasilnya terdapat pada tabel 10.
 
   Tabel 10. _Output_ matriks _TF-IDF_
 
@@ -254,7 +265,7 @@ Dataset _ratings.csv_
 
 - _Cosine Similarity_
 
-  Kosinus sudut yang dibentuk oleh dua benda atau vektor dalam ruang dimensi-n ditentukan oleh skor _cosine similarity_. Sudut antara vektor riwayat berita pembaca pada data uji dan pembaca pada data pelatihan ditentukan dengan menggunakan skor _cosine similarity_. Kedua vektor identik jika sudutnya nol atau skor kosinus adalah 1. Sebaliknya, kedua vektor berbeda secara signifikan satu sama lain jika skor kosinus menampilkan -1, atau sudut 180 derajat. Pada tahap ini, dihitung _cosine similarity dataframe tfidf_matrix_ yang telah diperoleh pada tahapan sebelumnya. Dengan satu baris kode untuk memanggil fungsi _cosine similarity_ dari _library sklearn_, telah berhasil menghitung kesamaan _(similarity)_ antar makanan. Kode akan menghasilkan _output_ berupa matriks kesamaan dalam bentuk _array_. 
+  Kosinus sudut yang dibentuk oleh dua benda atau vektor dalam ruang dimensi-n ditentukan oleh skor _cosine similarity_. Sudut antara vektor riwayat berita pembaca pada data uji dan pembaca pada data pelatihan ditentukan dengan menggunakan skor _cosine similarity_. Kedua vektor identik jika sudutnya nol atau skor kosinus adalah 1. Sebaliknya, kedua vektor berbeda secara signifikan satu sama lain jika skor kosinus menampilkan -1, atau sudut 180 derajat. Pada tahap ini, dihitung _cosine similarity dataframe tfidf_matrix_ yang telah diperoleh pada tahapan sebelumnya. Dengan satu baris kode untuk memanggil fungsi _cosine similarity_ dari _library sklearn_, telah berhasil menghitung kesamaan _(similarity)_ antar makanan. Kode akan menghasilkan _output_ berupa matriks kesamaan dalam bentuk _array_ [3]. 
 
   Tabel 11. _Output_ hasil perhitungan _cosine similirarity_
 
@@ -301,9 +312,9 @@ Model akan dikembangkan dengan 2 metode yang berbeda. Kedua metode tersebut adal
 
 1. _Content Based Filtering_
 
-     Sistem rekomendasi _Content Based Filtering_ menyarankan produk yang mirip dengan produk yang disukai pengguna sebelumnya. Nilai item ditentukan dengan mempertimbangkan fitur yang ada di setiap konten. Sistem rekomendasi _knowledge-based_ menyarankan item berdasarkan pengetahuan domain pengguna tentang fitur apa yang tersedia dalam item dan bagaimana pengguna dapat memenuhi kebutuhan dan berguna bagi pengguna. Nilai kesamaan dihitung berdasarkan besarnya nilai kesamaan antara kebutuhan pengguna dan rekomendasi yang ada. Ada dua pendekatan yang tersedia dalam metode rekomendasi _knowledge-based_ yaitu _case based_ dan _constraint-based_. Kesamaan antara kedua pendekatan ini adalah bahwa pengguna harus mengirimkan permintaan sesegera mungkin.  Selanjutnya, sistem akan mengidentifikasi solusi yang paling sesuai dengan kebutuhan pengguna. Seperti yang terlihat pada gambar 3.
+     Sistem rekomendasi _Content Based Filtering_ menyarankan produk yang mirip dengan produk yang disukai pengguna sebelumnya. Nilai item ditentukan dengan mempertimbangkan fitur yang ada di setiap konten. Sistem rekomendasi _knowledge-based_ menyarankan item berdasarkan pengetahuan domain pengguna tentang fitur apa yang tersedia dalam item dan bagaimana pengguna dapat memenuhi kebutuhan dan berguna bagi pengguna. Nilai kesamaan dihitung berdasarkan besarnya nilai kesamaan antara kebutuhan pengguna dan rekomendasi yang ada. Ada dua pendekatan yang tersedia dalam metode rekomendasi _knowledge-based_ yaitu _case based_ dan _constraint-based_. Kesamaan antara kedua pendekatan ini adalah bahwa pengguna harus mengirimkan permintaan sesegera mungkin.  Selanjutnya, sistem akan mengidentifikasi solusi yang paling sesuai dengan kebutuhan pengguna [1]. Seperti yang terlihat pada gambar 3.
 
-   Gambar 3. Metode _Content Based Filtering_
+   Gambar 1. Metode _Content Based Filtering_
 
    ![CBF](https://github.com/fannof/project_recommendation_system/assets/99071605/7051df06-72cd-42cf-8e1a-7474475ec6d3)
 
@@ -340,9 +351,9 @@ Model akan dikembangkan dengan 2 metode yang berbeda. Kedua metode tersebut adal
 
 2. _Collaborative Filtering_
 
-      Metode _Collaborative Filtering_ adalah teknik yang memberikan rekomendasi berdasarkan preferensi pengguna atau item serupa lainnya.  Dua jenis metode _Collaborative Filtering_ dibedakan menjadi: _User Based CF_ dan _Item Based CF_. _User-Based Collaborative Filtering_ menyatakan bahwa cara terbaik untuk menemukan item menarik bagi pengguna adalah dengan mencari pengguna lain yang memiliki minat atau kebutuhan yang sama. Algoritma _User Based CF_ dapat mengidentifikasi pengguna yang mirip satu sama lain _(user neighbor)_ dengan mengidentifikasi pengguna yang berbeda satu sama lain _(user similarity)_. Setiap rating yang didapatkan dari pengguna yang bertetangga kemudian akan dijadikan mesin rekomendasi bagi pengguna aktif. Seperti yang terlihat pada gambar 4.
+      Metode _Collaborative Filtering_ adalah teknik yang memberikan rekomendasi berdasarkan preferensi pengguna atau item serupa lainnya.  Dua jenis metode _Collaborative Filtering_ dibedakan menjadi: _User Based CF_ dan _Item Based CF_. _User-Based Collaborative Filtering_ menyatakan bahwa cara terbaik untuk menemukan item menarik bagi pengguna adalah dengan mencari pengguna lain yang memiliki minat atau kebutuhan yang sama. Algoritma _User Based CF_ dapat mengidentifikasi pengguna yang mirip satu sama lain _(user neighbor)_ dengan mengidentifikasi pengguna yang berbeda satu sama lain _(user similarity)_. Setiap rating yang didapatkan dari pengguna yang bertetangga kemudian akan dijadikan mesin rekomendasi bagi pengguna aktif [1]. Seperti yang terlihat pada gambar 4.
 
-   Gambar 4. _Collaborative Filtering_
+   Gambar 2. _Collaborative Filtering_
 
    ![CF](https://github.com/fannof/project_recommendation_system/assets/99071605/5b839287-f715-4b06-abd4-bf1bce8759c4)
 
@@ -420,11 +431,11 @@ Model akan dikembangkan dengan 2 metode yang berbeda. Kedua metode tersebut adal
 
   _Root Mean Squared Error (RMSE)_ adalah salah satu metrik evaluasi yang umum digunakan dalam regresi untuk mengukur seberapa baik model regresi memprediksi nilai target aktual dalam suatu dataset. Metrik ini memberikan gambaran tentang seberapa dekat prediksi model dengan nilai aktual yang diamati.
 
-  Gambar Plot akurasi metrik evaluasi _RMSE_
+  Gambar 3. Plot akurasi metrik evaluasi _RMSE_
 
   ![RMSE](https://github.com/fannof/project_recommendation_system/assets/99071605/04aa192c-6dec-499e-a6f3-fbd292b9c2bd)
 
-  Pada gambar , proses _training_ model cukup smooth dan model konvergen pada _epochs_ sekitar 100. Dari proses ini, diperoleh nilai _error_ akhir sebesar sekitar 0.19 dan _error_ pada data validasi sebesar 0.32. Nilai tersebut cukup bagus untuk sistem rekomendasi.
+  Pada gambar 3, proses _training_ model cukup smooth dan model konvergen pada _epochs_ sekitar 100. Dari proses ini, diperoleh nilai _error_ akhir sebesar sekitar 0.19 dan _error_ pada data validasi sebesar 0.32. Nilai tersebut cukup bagus untuk sistem rekomendasi.
 
   _Root Mean Squared Error (RMSE)_ dihitung berdasarkan formula:
 
