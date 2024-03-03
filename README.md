@@ -1,6 +1,6 @@
 # Laporan Proyek Machine Learning - Novan Nur Hidayat
 
-# PENGEMBANGAN SISTEM REKOMENDASI MAKANAN DENGAN ALGORITMA _CONTENT BASED_ DAN _COLLABORATIVE FILTERING_
+# PENGEMBANGAN SISTEM REKOMENDASI MAKANAN DENGAN ALGORITMA _CONTENT BASED FILTERING_ DAN _COLLABORATIVE FILTERING_
 
 ## Project Overview
 
@@ -13,12 +13,6 @@
   Setiap item makanan dalam kategori tersebut memiliki rasa dan harga unik yang juga bervariasi. Pertimbangan-pertimbangan ini menciptakan kompleksitas dalam arti bahwa pengguna dipaksa untuk mengeluarkan lebih banyak waktu dan energi untuk mendapatkan makanan yang sesuai. Selain itu, akan timbul keraguan dan kecemasan yang akan  mengakibatkan  memilih makanan yang tidak  disukai dan takut  kecewa  akan  pilihannya. Berdasarkan masalah tersebut, Sistem Rekomendasi diperlukan untuk membantu dalam memilih makanan yang diinginkan.
 
   Sistem rekomendasi adalah sistem yang menyarankan informasi yang berguna atau menunjukkan apa yang perlu dilakukan oleh pengguna untuk mencapai tujuan, yang bisa berupa memilih produk yang diinginkan. Dengan demikian, pelanggan dapat memilih produk yang lebih mudah beradaptasi dan lebih efektif dalam mengevaluasi produk yang diperlukan. Secara umum, ada tiga sistem rekomendasi yang banyak digunakan yaitu: _Content Based (CB)_, _Collaborative Filtering (CF)_, dan _Hybrid_.
-
-  Sistem rekomendasi _Content Based_ menyarankan produk yang mirip dengan produk yang disukai pengguna sebelumnya. Nilai item ditentukan dengan mempertimbangkan fitur yang ada di setiap konten. Sistem rekomendasi _knowledge-based_ menyarankan item berdasarkan pengetahuan domain pengguna tentang fitur apa yang tersedia dalam item dan bagaimana pengguna dapat memenuhi kebutuhan dan berguna bagi pengguna. Nilai kesamaan dihitung berdasarkan besarnya nilai kesamaan antara kebutuhan pengguna dan rekomendasi yang ada. Ada dua pendekatan yang tersedia dalam metode rekomendasi _knowledge-based_ yaitu _case based_ dan _constraint-based_. Kesamaan antara kedua pendekatan ini adalah bahwa pengguna harus mengirimkan permintaan sesegera mungkin.  Selanjutnya, sistem akan mengidentifikasi solusi yang paling sesuai dengan kebutuhan pengguna.
-
-  Metode _Collaborative Filtering_ adalah teknik yang memberikan rekomendasi berdasarkan preferensi pengguna atau item serupa lainnya.  Dua jenis metode _Collaborative Filtering_ dibedakan menjadi: _User Based CF_ dan _Item Based CF_. _User-Based Collaborative Filtering_ menyatakan bahwa cara terbaik untuk menemukan item menarik bagi pengguna adalah dengan mencari pengguna lain yang memiliki minat atau kebutuhan yang sama. Algoritma _User Based CF_ dapat mengidentifikasi pengguna yang mirip satu sama lain _(user neighbor)_ dengan mengidentifikasi pengguna yang berbeda satu sama lain _(user similarity)_. Setiap rating yang didapatkan dari pengguna yang bertetangga kemudian akan dijadikan mesin rekomendasi bagi pengguna aktif.
-
-  Di sisi lain, _Item-Based Collaborative Filtering_ memiliki struktur yang mirip dengan _User Based C_. Jika pemfilteran _user-based_ sebelumnya menunjukkan korelasi _user_ ke _user_, maka pemfilteran _item-based_ akan menunjukkan korelasi item yang diminati oleh sistem pengguna lain. Item-item akan terus terakumulasi. Salah satu keuntungan dari metode _item-based  collaborative  filtering_ adalah kemampuannya untuk mengeksplorasi jejaring sosial implisit, yang berpotensi meningkatkan akurasi rekomendasi yang dibuat.
 
 - Rumusan Masalah dan Solusi Permasalahan
 
@@ -155,11 +149,11 @@ Dataset _ratings.csv_
 
 ### Exploratory Data Analysis
 
-- Menghapus nilai _NaN_
+- Menghapus _missing value_
 
-  Dari hasil output, terlihat bahwa baris terakhir dataset _ratings.csv_ memiliki nilai _NaN_. Dengan menggunakan teknik _dropna_, sekarang _DataFrame_ ratings tidak mengandung baris dengan nilai yang hilang.
+  Dari hasil output, terlihat bahwa baris terakhir dataset _ratings.csv_ memiliki nilai _missing value_. Dengan menggunakan teknik _dropna_, sekarang _DataFrame_ ratings tidak mengandung baris dengan _missing value_.
 
-  Tabel 6. Dataset sudah bersih dari nilai _NaN_
+  Tabel 6. Dataset sudah bersih dari _missing value_
 
   |     | user_id | id_makanan | rating |
   |----:|--------:|-----------:|-------:|
@@ -177,7 +171,7 @@ Dataset _ratings.csv_
 
 ## Data Preparation
 
-- Menggabungkan seluruh dataset
+- Menggabungkan dataset _foods.csv_ dan _ratings.csv_
 
   Menggunakan _library pandas_ dan fungsi _merge()_ untuk menggabungkan dataset dengan kolom id_makanan sebagai acuan penggabungan.
 
@@ -197,6 +191,42 @@ Dataset _ratings.csv_
   | 600 |        399 |                 Lemon-Ginger Cake with Pistachios |       Dessert | non-veg | egg yolks,lemon juice, unsalted butter, all pu... |     NaN |    NaN |
   | 601 |        400 |                       Rosemary Roasted Vegetables |  Healthy_Food |     veg | kosher salt, rosemary, garlic, potato, olive o... |     NaN |    NaN |
 
+    Pada tabel 7, setelah membuat _DataFrame_ baru bernama _foods_all_ yang terdiri gabungan dari dataset _foods.csv_ dan _ratings_csv_ ternyata terdapat total 91 _missing value_ pada fitur 'user_id' dan 'rating'. Langkah selanjutnya yaitu membersihkan _missing value_ tersebut dengan fungsi _dropna()_. Hasil dapat dilihat pada tabel 8 dengan total data yang tersisa sebanyak 511 baris.
+
+  Tabel 8. Dataset _foods_all_ sudah bersih dari _missing value_
+
+  |     | id_makanan |          nama_makanan | jenis_makanan | veg_non |                                         deskripsi | user_id | rating |
+  |----:|-----------:|----------------------:|--------------:|--------:|--------------------------------------------------:|--------:|--------|
+  |  0  |          1 |   summer squash salad |  Healthy_Food |     veg | white balsamic vinegar, lemon juice, lemon rin... |    49.0 |    5.0 |
+  |  1  |          1 |   summer squash salad |  Healthy_Food |     veg | white balsamic vinegar, lemon juice, lemon rin... |    71.0 |   10.0 |
+  |  2  |          2 |  chicken minced salad |  Healthy_Food | non-veg | olive oil, chicken mince, garlic (minced), oni... |     9.0 |    3.0 |
+  |  3  |          2 |  chicken minced salad |  Healthy_Food | non-veg | olive oil, chicken mince, garlic (minced), oni... |    22.0 |    5.0 |
+  |  4  |          2 |  chicken minced salad |  Healthy_Food | non-veg | olive oil, chicken mince, garlic (minced), oni... |    39.0 |   10.0 |
+  | ... |        ... |                   ... |           ... |     ... |                                               ... |     ... |    ... |
+  | 506 |        305 |            sunga pork |      Japanese |     veg |                                             curry |    56.0 |    9.0 |
+  | 507 |        306 |          banana chips |         Snack |     veg | dried slices of bananas (fruits of herbaceous ... |    80.0 |    8.0 |
+  | 508 |        307 |           bhurji- egg |        Indian | non-veg | made using indian spices, onion, tomatoes, gre... |    71.0 |    1.0 |
+  | 509 |        308 | flattened rice / poha |        Indian |     veg | dehusked rice which is flattened into flat lig... |    97.0 |    3.0 |
+  | 510 |        309 |           puffed rice |         Snack |     veg | grain made from rice; usually made by heating ... |    32.0 |    5.0 |
+
+- Mengkonversi data pada kolom 'id_makanan', 'nama_makanan', dan 'jenis_makanan' menjadi bentuk _list_ dan membuat _dictionary_ untuk menentukan pasangan _key-value_ antara ketiga kolom tersebut. Hasil dapat dilihat pada tabel 9.
+
+  Tabel 9. Data sudah siap untuk dimasukkan dalam permodelan
+
+  |     | id_makanan |          nama_makanan | jenis_makanan |
+  |----:|-----------:|----------------------:|--------------:|
+  |  0  |          1 |   summer squash salad |  Healthy_Food |
+  |  1  |          1 |   summer squash salad |  Healthy_Food |
+  |  2  |          2 |  chicken minced salad |  Healthy_Food |
+  |  3  |          2 |  chicken minced salad |  Healthy_Food |
+  |  4  |          2 |  chicken minced salad |  Healthy_Food |
+  | ... |        ... |                   ... |           ... |
+  | 506 |        305 |            sunga pork |      Japanese |
+  | 507 |        306 |          banana chips |         Snack |
+  | 508 |        307 |           bhurji- egg |        Indian |
+  | 509 |        308 | flattened rice / poha |        Indian |
+  | 510 |        309 |           puffed rice |         Snack |
+
 - _Train-Test-Split_
 
   Proses membagi himpunan data menjadi data pelatihan dan pengujian adalah langkah yang diperlukan sebelum membuat model. Hal ini penting dilakukan untuk memperkuat semua data yang tersedia untuk menilai beberapa generalisasi model ke data baru. Tercatat bahwa setiap transformasi data yang dilakukan juga berfungsi sebagai komponen model. Karena data _test set_ (uji) mentah, semua transformasi harus dilakukan pada data latih. Data dibagi menjadi 80% data _training_ dan 20% data _testing_, karena jumlah seluruh data termasuk kecil, maka diperlukan lebih banyak data latih.
@@ -206,37 +236,6 @@ Dataset _ratings.csv_
   Total sampel data latih: 1104
 
   Total sampel data uji: 276
-
-- _Standarisasi_
-
-  Ketika algoritma pembelajaran mesin diterapkan pada data dengan distribusi yang serupa atau menyimpang, mereka berkinerja lebih baik dan menyatu lebih cepat. Proses penskalaan dan _standardisasi_ membantu mengubah data menjadi format yang lebih mudah dipahami oleh algoritma.
-
-  Tabel 5. Dataset setelah dilakukan _Standarisasi_
-
-  |      |      beds |     baths |      size |
-  |-----:|----------:|----------:|----------:|
-  | 1779 | -1.973241 | -1.412389 | -1.635772 |
-  |  316 |  0.014403 | -0.809653 | -0.143301 |
-  | 1385 | -0.979419 |  0.395818 | -1.011919 |
-  | 1666 | -1.973241 | -1.412389 | -1.416378 |
-  | 2004 | -0.979419 | -0.206917 | -0.744767 |
-
-  _Standardisasi_ adalah teknik transformasi yang paling umum digunakan dalam proses pembangunan model. Ini tidak akan mengubah fitur numerik menggunakan _encoding_. Teknik yang digunakan adalah _StandarScaler_ dari _library Scikit-learn_. Hasilnya dapat dilihat pada tabel 5.
-
-  Tabel 6. Informasi dataset setalah dilakukan teknik _Standarisasi_
-
-  |       |      beds | baths     | size      |
-  |------:|----------:|-----------|-----------|
-  | count | 1104.0000 | 1104.0000 | 1104.0000 |
-  | mean  | 0.0000    | -0.0000   | 0.0000    |
-  | std   | 1.0005    | 1.0005    | 1.0005    |
-  | min   | -1.9732   | -2.0151   | -2.2029   |
-  | 25%   | -0.9794   | -0.8097   | -0.7679   |
-  | 50%   | 0.0144    | -0.2069   | -0.1209   |
-  | 75%   | 1.0082    | 0.3958    | 0.6776    |
-  | max   | 3.9897    | 3.4095    | 3.3342    |
-
-  Dapat dilihat pada tabel 5, jumlah kolom setiap fitur memiliki sebanyak 1104 data. Dengan nilai minimal bernilai negatif (dibawah 0) dan nilai maksimal diantara angka 3 sampai 4.
 
 ### Penjelasan tahapan dan kenapa harus dilakukan proses tersebut
 
@@ -250,30 +249,27 @@ Dataset _ratings.csv_
 
 ## Modeling
 
-Model akan dikembangkan dengan 3 algoritma yang berbeda, dan mencari mana yang memiliki performa paling baik. Beberapa algoritma tersebut adalah sebagai berikut:
+Model akan dikembangkan dengan 2 metode yang berbeda. Kedua metode tersebut adalah sebagai berikut:
 
-1. _k-NN_
+1. _Content Based Filtering_
 
-   Merupakan algoritma _supervised learning_ yang mengklasifikasikan hasil instance yang baru dibuat berdasarkan mayoritas kategori k-tetangga terdekat.
-   Tujuan algoritma ini adalah untuk mengklasifikasikan objek baru berdasarkan atribut dan data sampel-sampel dari set pelatihan.
-   Algoritma _k-Nearest Neighbor_ menggunakan _Neighborhood Classification_ sebagai nilai prediksi yang berasal dari instance baru [3]. Seperti yang terlihat pada gambar 8.
+     Sistem rekomendasi _Content Based Filtering_ menyarankan produk yang mirip dengan produk yang disukai pengguna sebelumnya. Nilai item ditentukan dengan mempertimbangkan fitur yang ada di setiap konten. Sistem rekomendasi _knowledge-based_ menyarankan item berdasarkan pengetahuan domain pengguna tentang fitur apa yang tersedia dalam item dan bagaimana pengguna dapat memenuhi kebutuhan dan berguna bagi pengguna. Nilai kesamaan dihitung berdasarkan besarnya nilai kesamaan antara kebutuhan pengguna dan rekomendasi yang ada. Ada dua pendekatan yang tersedia dalam metode rekomendasi _knowledge-based_ yaitu _case based_ dan _constraint-based_. Kesamaan antara kedua pendekatan ini adalah bahwa pengguna harus mengirimkan permintaan sesegera mungkin.  Selanjutnya, sistem akan mengidentifikasi solusi yang paling sesuai dengan kebutuhan pengguna. Seperti yang terlihat pada gambar 3.
 
-   Gambar 8. Algoritma _k-NN_
+   Gambar 3. Metode _Content Based Filtering_
 
-   ![th](https://github.com/fannof/project_predictive_analysis/assets/99071605/2ac7ac6a-1790-4f6e-8a9b-82645c01735b)
+   ![CBF](https://github.com/fannof/project_recommendation_system/assets/99071605/7051df06-72cd-42cf-8e1a-7474475ec6d3)
 
+   _(Sumber: [https://www.google.com/url?sa=i&url=https%3A%2F%2Fdqlab.id)_
 
-    Langkah yang pertama, model _k-NN_ diinisialisasi dengan menentukan jumlah tetangga terdekat _(parameter n_neighbors)_. Contoh dalam kasus ini adalah _n_neighbors_ diatur ke 10, artinya model akan menggunakan 10 tetangga tetangga yang paling dekat untuk membuat prediksi.
-    Setelah model diinisialisasi, langkah selanjutnya adalah melatih model menggunakan data latih. Untuk melatih model dengan fitur X_train dan target y_train, gunakan fungsi _fit(X_train, y_train)_.
-    Setelah proses pelatihan selesai, model sudah dapat membuat prediksi pada data latih untuk mengevaluasi performa model. 
-  
-    Parameter yang digunakan pada model _k-NN_:
+2. _Collaborative Filtering_
 
-    - n_neighbors: Jumlah tetangga terdekat yang digunakan untuk membuat prediksi.
+      Metode _Collaborative Filtering_ adalah teknik yang memberikan rekomendasi berdasarkan preferensi pengguna atau item serupa lainnya.  Dua jenis metode _Collaborative Filtering_ dibedakan menjadi: _User Based CF_ dan _Item Based CF_. _User-Based Collaborative Filtering_ menyatakan bahwa cara terbaik untuk menemukan item menarik bagi pengguna adalah dengan mencari pengguna lain yang memiliki minat atau kebutuhan yang sama. Algoritma _User Based CF_ dapat mengidentifikasi pengguna yang mirip satu sama lain _(user neighbor)_ dengan mengidentifikasi pengguna yang berbeda satu sama lain _(user similarity)_. Setiap rating yang didapatkan dari pengguna yang bertetangga kemudian akan dijadikan mesin rekomendasi bagi pengguna aktif.
 
-2. _Random Forest_
+   ![CF](https://github.com/fannof/project_recommendation_system/assets/99071605/5b839287-f715-4b06-abd4-bf1bce8759c4)
 
-    _Random Forest_ menggunakan atribut kernel, sehingga dapat digunakan untuk membuat prediksi tentang data yang belum dihasilkan. Pendekatan _"divide and conquer"_ adalah apa yang dimaksud pohon keputusan sendiri ketika mempelajari suatu masalah berdasarkan kumpulan data independen yang ditampilkan dalam bagan pohon. Selain itu, pohon keputusan adalah kumpulan pertanyaan yang dijawab secara sistematis, di mana setiap pertanyaan yang diajukan menentukan jawaban berdasarkan nilai atribut dan didasarkan pada pohon daun, yang merupakan prediksi dari variabel kelas [4].
+   _(Sumber: https://www.google.com/url?sa=i&url=https%3A%2F%2Fdqlab.id)_
+
+  Di sisi lain, _Item-Based Collaborative Filtering_ memiliki struktur yang mirip dengan _User Based C_. Jika pemfilteran _user-based_ sebelumnya menunjukkan korelasi _user_ ke _user_, maka pemfilteran _item-based_ akan menunjukkan korelasi item yang diminati oleh sistem pengguna lain. Item-item akan terus terakumulasi. Salah satu keuntungan dari metode _item-based  collaborative  filtering_ adalah kemampuannya untuk mengeksplorasi jejaring sosial implisit, yang berpotensi meningkatkan akurasi rekomendasi yang dibuat.
 
     Gambar 9. Algoritma _Random Forest_
 
