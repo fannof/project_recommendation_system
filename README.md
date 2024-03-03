@@ -277,13 +277,23 @@ Dataset _ratings.csv_
 
 - _Train-Test-Split_
 
-  Proses membagi himpunan data menjadi data pelatihan dan pengujian adalah langkah yang diperlukan sebelum membuat model. Hal ini penting dilakukan untuk memperkuat semua data yang tersedia untuk menilai beberapa generalisasi model ke data baru. Tercatat bahwa setiap transformasi data yang dilakukan juga berfungsi sebagai komponen model. Karena data _test set_ (uji) mentah, semua transformasi harus dilakukan pada data latih. Data dibagi menjadi 80% data _training_ dan 20% data _testing_, karena jumlah seluruh data termasuk kecil, maka diperlukan lebih banyak data latih.
+  Proses membagi himpunan data menjadi data pelatihan dan pengujian adalah langkah yang diperlukan sebelum membuat model. Hal ini penting dilakukan untuk memperkuat semua data yang tersedia untuk menilai beberapa generalisasi model ke data baru. Tercatat bahwa setiap transformasi data yang dilakukan juga berfungsi sebagai komponen model. Karena data _test set_ (uji) mentah, semua transformasi harus dilakukan pada data latih. Data dibagi menjadi 80% data _training_ dan 20% data _testing_.
 
-  Total sampel seluruh dataset: 1380
+ [[ 35  19]
+ [ 60 232]
+ [ 66 244]
+ ...
+ [ 73  52]
+ [ 30  64]
+ [ 61 235]] [0.22222222 0.55555556 0.11111111 0.22222222 0.33333333 ... ] 
 
-  Total sampel data latih: 1104
+- Proses _encoding_
 
-  Total sampel data uji: 276
+  Pada tahap ini diperlukan proses menyandikan _(encode)_ fitur ‘user_id’ dan ‘id_makanan’ ke dalam indeks integer. Memetakan ‘user_id’ dan ‘id_makanan’ ke _dataframe_ yang berkaitan. Mengecek beberapa hal dalam data seperti jumlah user, jumlah makanan, kemudian mengubah nilai rating menjadi float.
+
+  - 100
+  - 309
+  - Number of User: 100, Number of Food: 309, Min Rating: 1.0, Max Rating: 10.0
 
 ### Penjelasan tahapan dan kenapa harus dilakukan proses tersebut
 
@@ -309,6 +319,35 @@ Model akan dikembangkan dengan 2 metode yang berbeda. Kedua metode tersebut adal
 
    _(Sumber: https://www.google.com/url?sa=i&url=https%3A%2F%2Fdqlab.id)_
 
+    Mendapatkan rekomendasi dengan metode _content based filtering_
+  
+     Setelah memiliki data similarity (kesamaan) antar makanan, tahap selanjutnya ialah menghasilkan sejumlah makanan yang akan direkomendasikan kepada pelanggan. Membuat fungsi food_recommendations dengan beberapa parameter sebagai berikut:
+
+   - makanan : Nama makanan (index kemiripan dataframe).
+   - Similarity_data : Dataframe mengenai similarity yang telah didefinisikan sebelumnya.
+   - Items : Nama dan fitur yang digunakan untuk mendefinisikan kemiripan, dalam hal ini adalah ‘nama_makanan’ dan ‘jenis_makanan’.
+   - k : Banyak rekomendasi yang ingin diberikan (dalam kasus ini adalah 5).
+  
+   Percobaan pertama adalah rekomendasi makanan yang mirip dengan _sweet potato pie_:
+  
+   Tabel 12. Mencari reomendasi yang mirip dengan makanan _sweet potato pie_
+
+   |     | id_makanan |     nama_makanan | jenis_makanan |
+   |----:|-----------:|-----------------:|---------------|
+   | 413 |        225 | sweet potato pie |       Dessert |
+
+   _sweet potato pie_ masuk dalam kategori jenis makanan dessert. Tentunya diharapkan rekomendasi yang diberikan adalah makanan dengan kategori yang mirip. Lalu panggil fungsi food_recommendations. Hasilnya dapat dilihat pada tabel 13.
+
+   Tabel 13. Mendapatkan reomendasi yang mirip dengan makanan _sweet potato pie_
+
+   |   |                      nama_makanan | jenis_makanan |
+   |--:|----------------------------------:|--------------:|
+   | 0 |           chocolate fudge cookies |       Dessert |
+   | 1 |              homemade gulab jamun |       Dessert |
+   | 2 | jalebi with fennel yogurt pudding |       Dessert |
+   | 3 |   double chocolate easter cookies |       Dessert |
+   | 4 |           eggless coffee cupcakes |       Dessert |
+
 2. _Collaborative Filtering_
 
       Metode _Collaborative Filtering_ adalah teknik yang memberikan rekomendasi berdasarkan preferensi pengguna atau item serupa lainnya.  Dua jenis metode _Collaborative Filtering_ dibedakan menjadi: _User Based CF_ dan _Item Based CF_. _User-Based Collaborative Filtering_ menyatakan bahwa cara terbaik untuk menemukan item menarik bagi pengguna adalah dengan mencari pengguna lain yang memiliki minat atau kebutuhan yang sama. Algoritma _User Based CF_ dapat mengidentifikasi pengguna yang mirip satu sama lain _(user neighbor)_ dengan mengidentifikasi pengguna yang berbeda satu sama lain _(user similarity)_. Setiap rating yang didapatkan dari pengguna yang bertetangga kemudian akan dijadikan mesin rekomendasi bagi pengguna aktif. Seperti yang terlihat pada gambar 4.
@@ -319,7 +358,7 @@ Model akan dikembangkan dengan 2 metode yang berbeda. Kedua metode tersebut adal
 
    _(Sumber: https://www.google.com/url?sa=i&url=https%3A%2F%2Fdqlab.id)_
 
-  Di sisi lain, _Item-Based Collaborative Filtering_ memiliki struktur yang mirip dengan _User Based C_. Jika pemfilteran _user-based_ sebelumnya menunjukkan korelasi _user_ ke _user_, maka pemfilteran _item-based_ akan menunjukkan korelasi item yang diminati oleh sistem pengguna lain. Item-item akan terus terakumulasi. Salah satu keuntungan dari metode _item-based  collaborative  filtering_ adalah kemampuannya untuk mengeksplorasi jejaring sosial implisit, yang berpotensi meningkatkan akurasi rekomendasi yang dibuat.
+   Di sisi lain, _Item-Based Collaborative Filtering_ memiliki struktur yang mirip dengan _User Based C_. Jika pemfilteran _user-based_ sebelumnya menunjukkan korelasi _user_ ke _user_, maka pemfilteran _item-based_ akan menunjukkan korelasi item yang diminati oleh sistem pengguna lain. Item-item akan terus terakumulasi. Salah satu keuntungan dari metode _item-based  collaborative  filtering_ adalah kemampuannya untuk mengeksplorasi jejaring sosial implisit, yang berpotensi meningkatkan akurasi rekomendasi yang dibuat.
 
   - Kelebihan dan kekurangan dari setiap algoritma yang digunakan:
 
