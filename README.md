@@ -295,16 +295,6 @@ Dataset _ratings.csv_
   - 309
   - Number of User: 100, Number of Food: 309, Min Rating: 1.0, Max Rating: 10.0
 
-### Penjelasan tahapan dan kenapa harus dilakukan proses tersebut
-
-- Proses _data prepraration_
-
-  Pertama adalah proses _train-test-split_. Data dibagi menjadi 80% _data training_ dan 20% _data testing_, karena jumlah seluruh data termasuk kecil, maka diperlukan lebih banyak data latih.
-
-  Proses _standarisasi_ mengubah nilai mean menjadi 0 dan std menjadi 1. _StandardScaler_ melakukan proses _standardisasi_ parameter fitur terlebih dahulu dengan mengurangkan nilai _mean_ (nilai rata-rata) dan kemudian membandingkannya dengan standar deviasi untuk menentukan distribusi.  _StandardScaler_ menghasilkan distribusi dengan rata-rata 0 dan standar deviasi 1.
-
-  Tahapan diatas penting dilakukan karena algoritma _machine learning_ memiliki performa lebih baik ketika dimodelkan pada data dengan skala relatif sama atau mendekati distribusi normal.
-
 ## Modeling
 
 Model akan dikembangkan dengan 2 metode yang berbeda. Kedua metode tersebut adalah sebagai berikut:
@@ -426,87 +416,33 @@ Model akan dikembangkan dengan 2 metode yang berbeda. Kedua metode tersebut adal
 
 ## Evaluation
 
-- Metrik yang digunakan adalah _MSE_
+- Metrik yang digunakan adalah _RMSE_
 
-  _Mean Squared Error (MSE)_ adalah salah satu metrik evaluasi yang umum digunakan dalam regresi untuk mengukur sejauh mana perbedaan antara nilai prediksi model dengan nilai aktual _(ground truth)_. _MSE_ dihitung dengan menjumlahkan kuadrat selisih antara setiap nilai prediksi dan nilai aktual, kemudian diambil rata-rata dari seluruh data. Nilai _MSE_ semakin kecil semakin baik. Nilai _MSE_ sama dengan nol berarti model memberikan prediksi yang sempurna sesuai dengan nilai aktual. Metrik evaluasi dapat dilihat pada tabel 7.
+  _Root Mean Squared Error (RMSE)_ adalah salah satu metrik evaluasi yang umum digunakan dalam regresi untuk mengukur seberapa baik model regresi memprediksi nilai target aktual dalam suatu dataset. Metrik ini memberikan gambaran tentang seberapa dekat prediksi model dengan nilai aktual yang diamati.
 
-  Tabel 7. Metrik evaluasi berdasarkan jenis algoritma yang digunakan
+  Gambar Plot akurasi metrik evaluasi _RMSE_
 
-  |          |           train | test            |
-  |---------:|----------------:|-----------------|
-  | KNN      | 44360753.266994 | 54239740.502329 |
-  | RF       | 12390218.332403 | 58255407.24918  |
-  | Boosting | 49336053.971147 | 51079691.292662 |
+  ![RMSE](https://github.com/fannof/project_recommendation_system/assets/99071605/04aa192c-6dec-499e-a6f3-fbd292b9c2bd)
 
-  Gambar 11. Plot metrik evaluasi perbandingan antar algoritma
+  Pada gambar , proses _training_ model cukup smooth dan model konvergen pada _epochs_ sekitar 100. Dari proses ini, diperoleh nilai _error_ akhir sebesar sekitar 0.19 dan _error_ pada data validasi sebesar 0.32. Nilai tersebut cukup bagus untuk sistem rekomendasi.
 
-  ![image](https://github.com/fannof/project_predictive_analysis/assets/99071605/5985c172-5ba8-49a3-b9d9-530935352cae)
+  _Root Mean Squared Error (RMSE)_ dihitung berdasarkan formula:
 
-- Hasil proyek berdasarkan metrik evaluasi
-  1. _K-Nearest Neighbors (k-NN)_:
+  $$RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}$$
 
-     - Data Latih _(Train)_: _MSE_ sekitar 44,360,753.27.
+  Dimana $\( n \)$ adalah angka observasi, $\( y_i \)$ adalah nilai aktual, dan $\( \hat{y}_i \)$ adalah nilai prediksi.
 
-     - Data Uji _(Test)_: _MSE_ sekitar 54,239,740.50.
+  - Cara Kerja:
 
-     - Interpretasi: Model _k-NN_ memiliki hasil yang lebih baik pada data latih dibandingkan dengan data uji, mungkin menunjukkan adanya _overfitting_ atau kurangnya kemampuan untuk menggeneralisasi pada data yang belum pernah dilihat sebelumnya.
+    - Untuk setiap pasangan data dalam dataset, hitung selisih antara nilai prediksi yang diberikan oleh model dan nilai aktual yang diamati. Misalkan $\( y_i \)$ adalah nilai aktual, dan $\( \hat{y}_i \)$ adalah nilai prediksi yang diberikan oleh model untuk sampel ke-i dalam dataset, maka selisihnya adalah $e_i = y_i - \hat{y}_i$.
 
-  2. _Random Forest (RF)_:
+    - Setiap selisih $e_i$ di kuadratkan. Ini dilakukan untuk memastikan bahwa selisih positif dan negatif tidak saling menghapus satu sama lain. Hasilnya adalah $e_i^2$.
 
-     - Data Latih _(Train)_: _MSE_ sekitar 12,390,218.33.
+    - _Mean_ (rata-rata) dari selisih kuadrat tersebut dihitung. Ini dilakukan dengan menjumlahkan semua nilai $e_i^2$ dan dan membaginya dengan jumlah total sampel.
 
-     - Data Uji _(Test)_: _MSE_ sekitar 58,255,407.25.
+    - Mengambil akar kuadrat dari nilai rata-rata tersebut untuk mendapatkan nilai _RMSE_.
 
-     - Interpretasi: Model _Random Forest_ menunjukkan performa yang baik pada data latih, tetapi terdapat peningkatan yang signifikan pada _MSE_ pada data uji, mungkin mengindikasikan adanya _overfitting_.
-
-  3. _Boosting_:
-
-     - Data Latih _(Train_): _MSE_ sekitar 49,336,053.97.
-     
-     - Data Uji _(Test)_: _MSE_ sekitar 51,079,691.29.
-
-     - Interpretasi: Model Boosting menunjukkan hasil yang relatif baik pada data uji dibandingkan dengan model _k-NN_ dan _Random Forest_. Meskipun _MSE_ pada data latih lebih tinggi dari _Random Forest_, kemampuan generalisasi pada data uji tampaknya lebih baik.
- 
-      Tabel 8. Hasil uji perbandingan antar algoritma yang dipakai
-
-      |      |    y_true | prediksi_KNN | prediksi_RF | prediksi_Boosting |
-      |-----:|----------:|-------------:|------------:|------------------:|
-      | 1680 | 1725000.0 |    1285250.0 |   1316599.0 |         1306669.6 |
-
-      _Mean Squared Error (MSE)_ dihitung brdasarkan formula:
-
-      $$MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$$
-
-      Dimana $\( n \)$ adalah angka observasi, $\( y_i \)$ adalah nilai aktual, dan $\( \hat{y}_i \)$ adalah nilai prediksi.
-
-      - Cara Kerja:
-
-        - _MSE_ mengukur rata-rata dari kuadrat selisih antara nilai prediksi dan nilai aktual.
-
-      - Prosesnya melibatkan langkah-langkah berikut:
-
-        - Menghitung selisih antara setiap nilai prediksi dan nilai aktual.
-
-        - Mengkuadratkan setiap selisih.
-
-        - Menjumlahkan semua nilai kuadrat.
-
-        - Membagi jumlah nilai kuadrat dengan jumlah observasi (n) untuk mendapatkan rata-rata.
-
-      - Interpretasi:
-
-        - Semakin kecil nilai _MSE_, semakin baik model memperkirakan nilai aktual.
-
-        - Kesalahan yang lebih besar akan memberikan kontribusi yang lebih besar terhadap nilai _MSE_ karena nilai diangkat ke kuadrat.
+    _RMSE_ memberikan informasi tentang seberapa besar deviasi rata-rata antara prediksi model dan nilai aktual. Semakin kecil nilai _RMSE_, semakin baik performa model dalam memprediksi nilai target. Sebaliknya, nilai _RMSE_ yang lebih tinggi menunjukkan bahwa model cenderung memiliki kesalahan prediksi yang lebih besar.
      
 ## REFERENCES
 
-[1]	M. L. Mu’tashim, T. Muhayat, S. A. Damayanti, H. N. Zaki, and R. Wirawan, “Analisis Prediksi Harga Rumah Sesuai Spesifikasi Menggunakan Multiple Linear Regression,” Inform.  J. Ilmu Komput., vol. 17, no. 3, p. 238, 2021, doi: 10.52958/iftk.v17i3.3635.
-
-[2]	A. Nata and Suparmadi, “Analisis Sistem Pendukung Keputusan Dengan Model Klasifikasi Berbasis Machine Learning Dalam Penentuan Penerima Program Indonesia Pintar,” J. Sci. Soc. Res., vol. 5, no. 3, p. 697, 2022, doi: 10.54314/jssr.v5i3.1041.
-
-[3]	A. M. Ismail, “Cara Kerja Algoritma k-Nearest Neighbor ( k-NN ) Apa itu Algoritma k-Nearest Neighbor ?,” no. February, pp. 0–5, 2019.
-
-[4]	N. L. Hanun and A. U. Zailani, “PENERAPAN ALGORITMA KLASIFIKASI RANDOM FOREST UNTUK PENENTUAN KELAYAKAN PEMBERIAN KREDIT DI KOPERASI MITRA SEJAHTERA,” J. Technol. Inf., vol. 5, no. 2, pp. 99–104, 2020.
-
-[5]	A. Bisri and R. S. Wahono, “Penerapan Adaboost untuk Penyelesaian Ketidakseimbangan Kelas pada Penentuan Kelulusan Mahasiswa dengan Metode Decision Tree,” J. Intell. Syst., vol. 1, no. 1, pp. 27–32, 2015.
