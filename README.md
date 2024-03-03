@@ -365,53 +365,55 @@ Model akan dikembangkan dengan 2 metode yang berbeda. Kedua metode tersebut adal
 
    Tahap pertama yaitu ambil sampel user secara acak dan definisikan variabel food_not_displayed yang merupakan daftar makanan yang belum pernah dilihat oleh pelanggan. Hal ini dilakukan karena daftar food_not_displayed inilah yang akan menjadi makanan yang direkomendasikan.
 
-   10/10 [==============================] - 0s 1ms/step
+    10/10 [==============================] - 0s 2ms/step
    
-    Showing recommendations for users: 80.0
+    Showing recommendations for users: 59.0
    
     ===========================
-   
+
     Food with high ratings from user
-   
+
     --------------------------------
-   
-    apple rabdi : Dessert
-   
-    christmas tree pizza : Italian
-   
-    amritsari chicken masala : Indian
-   
-    banana chips : Snack
-   
-    --------------------------------
-   
-    Top 10 food recommendation
-   
-    --------------------------------
-   
-    andhra pan fried pomfret : Indian
-   
+
+    beetroot modak : Japanese
+
+    spicy chicken masala : Indian
+
     corn pulao : Indian
-   
-    zucchini methi pulao : Indian
-   
-    vegetable bruschetta : Italian
-   
-    strawberry & pistachio breton tart : Dessert
-   
-    bread chana basket : Indian
-   
-    corn & jalapeno poppers : Mexican
-   
-    mixed beans salad : Healthy_Food
-   
-    fruit cube salad : Healthy_Food
-   
-    tandoori chicken : Indian
 
-   Hasil di atas adalah rekomendasi untuk user dengan id 80. Dari _output_ tersebut, didapat perbandingan antara _food with high ratings from user_ dan _Top 10 food recommendation_ untuk user.
+    homemade gulab jamun : Dessert
 
-   Beberapa makanan rekomendasi menyediakan kategori jenis makanan yang sesuai dengan rating user. Diperoleh 5 rekomendasi makanan dengan kategori jenis makanan 'Indian', 2 rekomendasi makanan dengan kategori 'healthy_food', 1 rekomendasi makanan kategori 'Dessert', 1 rekomendasi makanan kategori 'Mexican', dan 1 makanan dengan kategori 'Italian'.
+    jalapeno cheese fingers : Mexican
+
+    --------------------------------
+
+    Top 10 food recommendation
+
+    --------------------------------
+
+    sweet potato and quinoa bowl : Healthy_Food
+
+    corn and raw mango salad : Healthy_Food
+
+    andhra pan fried pomfret : Indian
+
+    christmas chocolate fudge cookies : Dessert
+
+    chicken parmigiana with tomato sauce : Italian
+
+    pesto fish kebabs : Indian
+
+    crunchy vegetable dal sattu croquettes : Italian
+
+    active charcoal modak : Japanese
+
+    flax seed and beetroot modak : Japanese
+
+    black rice : Healthy_Food
+
+   Hasil di atas adalah rekomendasi untuk user dengan id 59. Dari _output_ tersebut, didapat perbandingan antara _food with high ratings from user_ dan _Top 10 food recommendation_ untuk user.
+
+      Beberapa makanan rekomendasi menyediakan kategori jenis makanan yang sesuai dengan rating user. Diperoleh 2 rekomendasi makanan dengan kategori jenis makanan 'Indian', 3 rekomendasi makanan dengan kategori 'Healthy_Food', 1 rekomendasi makanan kategori 'Dessert', 2 rekomendasi makanan kategori 'Japanese', dan 2 makanan dengan kategori 'Italian'.
 
   - Kelebihan dan kekurangan _Content-Based Filtering_:
 
@@ -433,9 +435,9 @@ Model akan dikembangkan dengan 2 metode yang berbeda. Kedua metode tersebut adal
 
   Gambar 3. Plot akurasi metrik evaluasi _RMSE_
 
-  ![RMSE](https://github.com/fannof/project_recommendation_system/assets/99071605/04aa192c-6dec-499e-a6f3-fbd292b9c2bd)
+  ![RMSE](https://github.com/fannof/project_recommendation_system/assets/99071605/68163659-08f3-43c8-a378-3eb1eed18c38)
 
-  Pada gambar 3, proses _training_ model cukup smooth dan model konvergen pada _epochs_ sekitar 100. Dari proses ini, diperoleh nilai _error_ akhir sebesar sekitar 0.19 dan _error_ pada data validasi sebesar 0.32. Nilai tersebut cukup bagus untuk sistem rekomendasi.
+  Pada gambar 3, proses _training_ model cukup smooth dan model konvergen pada _epochs_ sekitar 100. Dari proses ini, diperoleh nilai _error_ akhir sebesar sekitar 0.19 dan _error_ pada data validasi sebesar 0.33. Nilai tersebut cukup bagus untuk sistem rekomendasi.
 
   _Root Mean Squared Error (RMSE)_ dihitung berdasarkan formula:
 
