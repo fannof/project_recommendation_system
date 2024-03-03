@@ -227,6 +227,54 @@ Dataset _ratings.csv_
   | 509 |        308 | flattened rice / poha |        Indian |
   | 510 |        309 |           puffed rice |         Snack |
 
+- _TF-IDF Vectorizer_
+
+  Teknik untuk pembobotan kata-kata disebut _Term Frequency-Inverse Document Frequency (TF-IDF)_, yang menentukan seberapa sering sebuah kata muncul di setiap dokumen serta di semua dokumen. _Term Frequency (TF)_ dan _Inverse Document Frequency (IDF)_ membentuk TF-IDF. Nilai yang disebut "_Term Frequency_" menunjukkan seberapa sering istilah tertentu muncul dalam dokumen. Berat istilah meningkat seiring dengan berapa kali istilah tersebut muncul dalam dokumen. Tujuan dari _Inverse Document Frequency (IDF)_ adalah untuk mengurangi bobot istilah jika muncul di setiap dokumen. Berbeda dengan _TF_, nilainya meningkat dengan menurunnya frekuensi kata dalam dokumen. Setelah _TF-IDF_ diterapkan pada 'nama_makanan' dan 'jenis_makanan', hasilnya terdapat pada tabel 10.
+
+  Tabel 10. _Output_ matriks _TF-IDF_
+
+  |                                            | japanese | italian | mexican | chinese | snack | beverage | indian | dessert | thai | healthy_food |
+  |-------------------------------------------:|---------:|--------:|--------:|--------:|------:|---------:|-------:|--------:|-----:|--------------|
+  |                               nama_makanan |          |         |         |         |       |          |        |         |      |              |
+  |             malabari fish curry            |      0.0 |     0.0 |     0.0 |     0.0 |   0.0 |      0.0 |    1.0 |     0.0 |  0.0 |          0.0 |
+  | mustard-parmesan whole roasted cauliflower |      0.0 |     0.0 |     0.0 |     0.0 |   0.0 |      0.0 |    0.0 |     0.0 |  0.0 |          1.0 |
+  |           banana walnut smoothie           |      0.0 |     0.0 |     0.0 |     0.0 |   0.0 |      0.0 |    0.0 |     0.0 |  0.0 |          1.0 |
+  |            chicken gilafi kebab            |      0.0 |     0.0 |     0.0 |     0.0 |   0.0 |      0.0 |    1.0 |     0.0 |  0.0 |          0.0 |
+  |               fish ambultiyal              |      0.0 |     0.0 |     0.0 |     0.0 |   0.0 |      0.0 |    1.0 |     0.0 |  0.0 |          0.0 |
+  |               easy bread poha              |      0.0 |     0.0 |     0.0 |     0.0 |   0.0 |      0.0 |    1.0 |     0.0 |  0.0 |          0.0 |
+  |                 fish curry                 |      0.0 |     0.0 |     0.0 |     0.0 |   0.0 |      0.0 |    0.0 |     0.0 |  1.0 |          0.0 |
+  |                red rice poha               |      0.0 |     0.0 |     0.0 |     0.0 |   0.0 |      0.0 |    1.0 |     0.0 |  0.0 |          0.0 |
+  |           grilled lemon margarita          |      0.0 |     0.0 |     0.0 |     0.0 |   0.0 |      1.0 |    0.0 |     0.0 |  0.0 |          0.0 |
+  |              broccoli souffle              |      0.0 |     1.0 |     0.0 |     0.0 |   0.0 |      0.0 |    0.0 |     0.0 |  0.0 |          0.0 |
+  |                    rice                    |      0.0 |     0.0 |     0.0 |     0.0 |   0.0 |      0.0 |    1.0 |     0.0 |  0.0 |          0.0 |
+  |               beetroot modak               |      1.0 |     0.0 |     0.0 |     0.0 |   0.0 |      0.0 |    0.0 |     0.0 |  0.0 |          0.0 |
+  |              sweet potato pie              |      0.0 |     0.0 |     0.0 |     0.0 |   0.0 |      0.0 |    0.0 |     1.0 |  0.0 |          0.0 |
+
+  _Output_ matriks _TF-IDF_ pada tabel 10 menunjukkan makanan _mustard-parmesan whole roasted cauliflower_ memiliki kategori 'healthy_food'. Hal ini terlihat dari nilai matriks 1.0 pada kategori 'healthy_food'. Selanjutnya, makanan _chicken gilafi kebab_ termasuk dalam kategori 'indian'. Sedangkan, _makanan beetroot modak_ termasuk dalam kategori 'japanese'. Demikian seterusnya. 
+
+- _Cosine Similarity_
+
+  Kosinus sudut yang dibentuk oleh dua benda atau vektor dalam ruang dimensi-n ditentukan oleh skor _cosine similarity_. Sudut antara vektor riwayat berita pembaca pada data uji dan pembaca pada data pelatihan ditentukan dengan menggunakan skor _cosine similarity_. Kedua vektor identik jika sudutnya nol atau skor kosinus adalah 1. Sebaliknya, kedua vektor berbeda secara signifikan satu sama lain jika skor kosinus menampilkan -1, atau sudut 180 derajat. Pada tahap ini, dihitung _cosine similarity dataframe tfidf_matrix_ yang telah diperoleh pada tahapan sebelumnya. Dengan satu baris kode untuk memanggil fungsi _cosine similarity_ dari _library sklearn_, telah berhasil menghitung kesamaan _(similarity)_ antar makanan. Kode akan menghasilkan _output_ berupa matriks kesamaan dalam bentuk _array_. 
+
+  Tabel 11. _Output_ hasil perhitungan _cosine similirarity_
+
+   |                 nama_makanan | malabari fish curry | grilled lemon margarita | dahi chicken | chicken palwal | braised lamb shanks | hot chocolate | sweet potato and quinoa bowl | baked multigrain murukku | duo of chocolate and strawberry | lemon poppy seed cake | lamb korma | detox haldi tea | baked shankarpali | camel milk cake tart | holi special malai kofta |
+  |-----------------------------:|--------------------:|------------------------:|-------------:|---------------:|--------------------:|--------------:|-----------------------------:|-------------------------:|--------------------------------:|----------------------:|-----------:|----------------:|------------------:|---------------------:|-------------------------:|
+  |                 nama_makanan |                     |                         |              |                |                     |               |                              |                          |                                 |                       |            |                 |                   |                      |                          |
+  |      bread chana basket      |                 1.0 |                     0.0 |          1.0 |            1.0 |                 0.0 |           0.0 |                          0.0 |                      0.0 |                             0.0 |                   0.0 |        1.0 |             0.0 |               0.0 |                  0.0 |                      1.0 |
+  |     cream of almond soup     |                 0.0 |                     0.0 |          0.0 |            0.0 |                 0.0 |           0.0 |                          1.0 |                      0.0 |                             0.0 |                   0.0 |        0.0 |             0.0 |               0.0 |                  0.0 |                      0.0 |
+  |    chocolate fudge cookies   |                 0.0 |                     0.0 |          0.0 |            0.0 |                 0.0 |           0.0 |                          0.0 |                      0.0 |                             1.0 |                   1.0 |        0.0 |             0.0 |               0.0 |                  1.0 |                      0.0 |
+  |  moong dal kiwi coconut soup |                 1.0 |                     0.0 |          1.0 |            1.0 |                 0.0 |           0.0 |                          0.0 |                      0.0 |                             0.0 |                   0.0 |        1.0 |             0.0 |               0.0 |                  0.0 |                      1.0 |
+  |  spicy creamy kadai chicken  |                 1.0 |                     0.0 |          1.0 |            1.0 |                 0.0 |           0.0 |                          0.0 |                      0.0 |                             0.0 |                   0.0 |        1.0 |             0.0 |               0.0 |                  0.0 |                      1.0 |
+  |      bengali lamb curry      |                 1.0 |                     0.0 |          1.0 |            1.0 |                 0.0 |           0.0 |                          0.0 |                      0.0 |                             0.0 |                   0.0 |        1.0 |             0.0 |               0.0 |                  0.0 |                      1.0 |
+  |    orange quinoa sevaiyan    |                 0.0 |                     0.0 |          0.0 |            0.0 |                 0.0 |           0.0 |                          1.0 |                      0.0 |                             0.0 |                   0.0 |        0.0 |             0.0 |               0.0 |                  0.0 |                      0.0 |
+  |         hot chocolate        |                 0.0 |                     1.0 |          0.0 |            0.0 |                 0.0 |           1.0 |                          0.0 |                      0.0 |                             0.0 |                   0.0 |        0.0 |             1.0 |               0.0 |                  0.0 |                      0.0 |
+  | sweet potato and quinoa bowl |                 0.0 |                     0.0 |          0.0 |            0.0 |                 0.0 |           0.0 |                          1.0 |                      0.0 |                             0.0 |                   0.0 |        0.0 |             0.0 |               0.0 |                  0.0 |                      0.0 |
+  |    ragi oats ladoo (laddu)   |                 0.0 |                     0.0 |          0.0 |            0.0 |                 0.0 |           0.0 |                          0.0 |                      0.0 |                             1.0 |                   1.0 |        0.0 |             0.0 |               0.0 |                  1.0 |                      0.0 |
+  |        chicken biryani       |                 1.0 |                     0.0 |          1.0 |            1.0 |                 0.0 |           0.0 |                          0.0 |                      0.0 |                             0.0 |                   0.0 |        1.0 |             0.0 |               0.0 |                  0.0 |                      1.0 | 
+
+  Pada tabel 11, Angka 1.0 mengindikasikan bahwa makanan pada kolom X (horizontal) memiliki kesamaan dengan makanan pada baris Y (vertikal). Sebagai contoh, makanan _bread chana basket_ dan _moong dal kiwi coconut soup_ teridentifikasi sama (similar) dengan makanan _malabari fish curry_. Contoh lain, makanan _spicy creamy kadai chicken_ teridentifikasi mirip dengan makanan _dahi chicken_. 
+
 - _Train-Test-Split_
 
   Proses membagi himpunan data menjadi data pelatihan dan pengujian adalah langkah yang diperlukan sebelum membuat model. Hal ini penting dilakukan untuk memperkuat semua data yang tersedia untuk menilai beberapa generalisasi model ke data baru. Tercatat bahwa setiap transformasi data yang dilakukan juga berfungsi sebagai komponen model. Karena data _test set_ (uji) mentah, semua transformasi harus dilakukan pada data latih. Data dibagi menjadi 80% data _training_ dan 20% data _testing_, karena jumlah seluruh data termasuk kecil, maka diperlukan lebih banyak data latih.
@@ -259,59 +307,19 @@ Model akan dikembangkan dengan 2 metode yang berbeda. Kedua metode tersebut adal
 
    ![CBF](https://github.com/fannof/project_recommendation_system/assets/99071605/7051df06-72cd-42cf-8e1a-7474475ec6d3)
 
-   _(Sumber: [https://www.google.com/url?sa=i&url=https%3A%2F%2Fdqlab.id)_
+   _(Sumber: https://www.google.com/url?sa=i&url=https%3A%2F%2Fdqlab.id)_
 
 2. _Collaborative Filtering_
 
-      Metode _Collaborative Filtering_ adalah teknik yang memberikan rekomendasi berdasarkan preferensi pengguna atau item serupa lainnya.  Dua jenis metode _Collaborative Filtering_ dibedakan menjadi: _User Based CF_ dan _Item Based CF_. _User-Based Collaborative Filtering_ menyatakan bahwa cara terbaik untuk menemukan item menarik bagi pengguna adalah dengan mencari pengguna lain yang memiliki minat atau kebutuhan yang sama. Algoritma _User Based CF_ dapat mengidentifikasi pengguna yang mirip satu sama lain _(user neighbor)_ dengan mengidentifikasi pengguna yang berbeda satu sama lain _(user similarity)_. Setiap rating yang didapatkan dari pengguna yang bertetangga kemudian akan dijadikan mesin rekomendasi bagi pengguna aktif.
+      Metode _Collaborative Filtering_ adalah teknik yang memberikan rekomendasi berdasarkan preferensi pengguna atau item serupa lainnya.  Dua jenis metode _Collaborative Filtering_ dibedakan menjadi: _User Based CF_ dan _Item Based CF_. _User-Based Collaborative Filtering_ menyatakan bahwa cara terbaik untuk menemukan item menarik bagi pengguna adalah dengan mencari pengguna lain yang memiliki minat atau kebutuhan yang sama. Algoritma _User Based CF_ dapat mengidentifikasi pengguna yang mirip satu sama lain _(user neighbor)_ dengan mengidentifikasi pengguna yang berbeda satu sama lain _(user similarity)_. Setiap rating yang didapatkan dari pengguna yang bertetangga kemudian akan dijadikan mesin rekomendasi bagi pengguna aktif. Seperti yang terlihat pada gambar 4.
+
+   Gambar 4. _Collaborative Filtering_
 
    ![CF](https://github.com/fannof/project_recommendation_system/assets/99071605/5b839287-f715-4b06-abd4-bf1bce8759c4)
 
    _(Sumber: https://www.google.com/url?sa=i&url=https%3A%2F%2Fdqlab.id)_
 
   Di sisi lain, _Item-Based Collaborative Filtering_ memiliki struktur yang mirip dengan _User Based C_. Jika pemfilteran _user-based_ sebelumnya menunjukkan korelasi _user_ ke _user_, maka pemfilteran _item-based_ akan menunjukkan korelasi item yang diminati oleh sistem pengguna lain. Item-item akan terus terakumulasi. Salah satu keuntungan dari metode _item-based  collaborative  filtering_ adalah kemampuannya untuk mengeksplorasi jejaring sosial implisit, yang berpotensi meningkatkan akurasi rekomendasi yang dibuat.
-
-    Gambar 9. Algoritma _Random Forest_
-
-    ![th](https://github.com/fannof/project_predictive_analysis/assets/99071605/6e665d4f-12da-4c6f-b42a-7dc4998c66d2)
-
-
-    Model _Random Forest_ diinisialisasi dengan menentukan beberapa hyperparameter.
-    Model _Random Forest_ dilatih menggunakan data latih (X_train dan y_train). Fungsi fit(X_train, y_train) digunakan untuk melatih model.
-    Setelah pelatihan selesai, model sekarang dapat digunakan untuk membuat prediksi pada data latih. _RF.predict(X_train)_ menghasilkan prediksi target berdasarkan fitur pada data latih.
-  
-    Parameter yang Digunakan pada Model _Random Forest_:
-  
-    - n_estimators: Jumlah pohon keputusan dalam _ensemble_.
-  
-    - max_depth: Kedalaman maksimum setiap pohon keputusan.
-
-    - random_state: Digunakan untuk memastikan hasil yang reproduktif.
-  
-    - n_jobs: Jumlah pekerjaan paralel yang akan dijalankan.
-
-3. _Boosting Algorithm_
-
-    Algoritma _boosting_ adalah algoritma iteratif yang menyediakan bot berbeda untuk distribusi data pelatihan setiap iterasi. Setiap iterasi peningkatan menambahkan bot ke setiap contoh masalah klasifikasi dan mengurangi bot ke contoh klasifikasi yang benar sehingga data pelatihan dapat didistribusikan secara efektif. Lebih efektif untuk mengatasi masalah ketidakseimbangan kelas, metode _Boosting (AdaBoost)_ yang diusulkan dengan _selective costing ensemble_ mampu meningkatkan identifikasi dari kelas minoritas yang sulit serta menjaga kemampuan klasifikasi dari _class_ mayoritas. Karena prevalensi metode pembelajaran _ensamble_ yang dapat mengurangi variasi, fenomena ini terjadi karena bias rata-rata metode _ensamble_ dalam mengurangi variasi dari satu set kriteria [5].
-
-    Gambar 10. Algoritma _Boosting_
-
-    ![ada3](https://github.com/fannof/project_predictive_analysis/assets/99071605/e8579d87-59f8-4e2e-84c2-e97fb3893bf1)
-
-
-    Model _Boosting (AdaBoostRegressor)_ diinisialisasi dengan menentukan _hyperparameter_ tertentu. Parameter yang diatur adalah _learning_rate_ dengan nilai 0.05. _random_state_ digunakan untuk memastikan reproduktibilitas hasil.
-    Model diarahkan untuk mempelajari hubungan antara fitur (X_train) dan target (y_train). Fungsi _fit(X_train, y_train)_ digunakan untuk melatih model dengan data latih.
-    Setelah pelatihan selesai, sekarang model dapat digunakan untuk membuat prediksi pada data latih. _boosting.predict(X_train)_ menghasilkan prediksi target berdasarkan fitur pada data latih.
-   
-    Parameter yang Digunakan pada Model _Boosting (AdaBoostRegressor)_:
-   
-    - learning_rate: Menentukan sejauh mana model belajar dari kesalahan sebelumnya. Nilai yang lebih kecil akan memperbaiki konvergensi, tetapi memerlukan jumlah estimator (pohon       keputusan) yang lebih besar.
-  
-    - n_estimators: Jumlah estimator (pohon keputusan) yang digunakan.
-
-    - base_estimator: Tipe model dasar yang digunakan. Secara default, digunakan pohon keputusan _(DecisionTreeRegressor)_.
-
-    - random_state: Digunakan untuk memastikan hasil yang reproduktif.
 
   - Kelebihan dan kekurangan dari setiap algoritma yang digunakan:
 
