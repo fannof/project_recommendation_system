@@ -477,13 +477,13 @@ Model akan dikembangkan dengan 2 metode yang berbeda. Kedua metode tersebut adal
 
   $$RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}$$
 
-  Dimana $\( n \)$ adalah angka observasi, $\( y_i \)$ adalah nilai aktual, dan $\( \hat{y}_i \)$ adalah nilai prediksi.
+  Dimana  $n$ adalah angka observasi, $y_i$ adalah nilai aktual, dan $\hat{y}_i$ adalah nilai prediksi.
 
   - Cara Kerja:
 
-    - Untuk setiap pasangan data dalam dataset, hitung selisih antara nilai prediksi yang diberikan oleh model dan nilai aktual yang diamati. Misalkan $\( y_i \)$ adalah nilai aktual, dan $\( \hat{y}_i \)$ adalah nilai prediksi yang diberikan oleh model untuk sampel ke-i dalam dataset, maka selisihnya adalah $e_i = y_i - \hat{y}_i$.
+    - Untuk setiap pasangan data dalam dataset, hitung selisih antara nilai prediksi yang diberikan oleh model dan nilai aktual yang diamati. Misalkan $y_i$ adalah nilai aktual, dan $\hat{y}_i$ adalah nilai prediksi yang diberikan oleh model untuk sampel ke-i dalam dataset, maka selisihnya adalah $e_i = y_i - \hat{y}_i$.
 
-    - Setiap selisih $e_i$ di kuadratkan. Ini dilakukan untuk memastikan bahwa selisih positif dan negatif tidak saling menghapus satu sama lain. Hasilnya adalah $e_i^2$.
+    - Setiap selisih $e_i$ dikuadratkan. Ini dilakukan untuk memastikan bahwa selisih positif dan negatif tidak saling menghapus satu sama lain. Hasilnya adalah $e_i^2$.
 
     - _Mean_ (rata-rata) dari selisih kuadrat tersebut dihitung. Ini dilakukan dengan menjumlahkan semua nilai $e_i^2$ dan dan membaginya dengan jumlah total sampel.
 
