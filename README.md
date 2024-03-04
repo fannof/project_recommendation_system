@@ -40,7 +40,7 @@
 
 ### Solution Approach
 
-- Menggunakan pendekatan _Content Based Filtering_ untuk merekomendasikan makanan ke pelanggan sesuai minat sebelumnya dan _Collaborative Filtering_ untuk merekomendasikan makanan ke pelanggan sesuai persamaan kesukaan dengan pelanggan lain. Hal ini bertujuan untuk melakukan rekomendasi dengan memanfaatkan kekuatan masing-masing model. Evaluasi model dapat menggunakan metrik seperti _Root Mean Squared Error (RMSE)_ untuk mengukur seberapa baik model merekomendasi makanan.
+- Menggunakan pendekatan _Content Based Filtering_ untuk merekomendasikan makanan ke pelanggan sesuai minat sebelumnya dan _Collaborative Filtering_ untuk merekomendasikan makanan ke pelanggan sesuai persamaan kesukaan dengan pelanggan lain. Hal ini bertujuan untuk melakukan rekomendasi dengan memanfaatkan kekuatan masing-masing model. Evaluasi model dapat menggunakan metrik seperti _Precision_ dan _Root Mean Squared Error (RMSE)_ untuk mengukur seberapa baik model merekomendasi makanan.
 
 ## Data Understanding
 
@@ -240,7 +240,7 @@ Dataset _ratings.csv_
 
 - _TF-IDF Vectorizer_
 
-  Teknik untuk pembobotan kata-kata disebut _Term Frequency-Inverse Document Frequency (TF-IDF)_, yang menentukan seberapa sering sebuah kata muncul di setiap dokumen serta di semua dokumen. _Term Frequency (TF)_ dan _Inverse Document Frequency (IDF)_ membentuk TF-IDF. Nilai yang disebut "_Term Frequency_" menunjukkan seberapa sering istilah tertentu muncul dalam dokumen. Berat istilah meningkat seiring dengan berapa kali istilah tersebut muncul dalam dokumen. Tujuan dari _Inverse Document Frequency (IDF)_ adalah untuk mengurangi bobot istilah jika muncul di setiap dokumen. Berbeda dengan _TF_, nilainya meningkat dengan menurunnya frekuensi kata dalam dokumen [3]. Setelah _TF-IDF_ diterapkan pada 'nama_makanan' dan 'jenis_makanan', hasilnya terdapat pada tabel 10.
+  Teknik untuk pembobotan kata-kata disebut _Term Frequency-Inverse Document Frequency (TF-IDF)_, yang menentukan seberapa sering sebuah kata muncul di setiap dokumen serta di semua dokumen. _Term Frequency (TF)_ dan _Inverse Document Frequency (IDF)_ membentuk TF-IDF. Nilai yang disebut "_Term Frequency_" menunjukkan seberapa sering istilah tertentu muncul dalam dokumen. Berat istilah meningkat seiring dengan berapa kali istilah tersebut muncul dalam dokumen. **Hal ini penting dilakukan** karena tujuan dari _Inverse Document Frequency (IDF)_ adalah untuk mengurangi bobot istilah jika muncul di setiap dokumen. Berbeda dengan _TF_, nilainya meningkat dengan menurunnya frekuensi kata dalam dokumen [3]. Setelah _TF-IDF_ diterapkan pada 'nama_makanan' dan 'jenis_makanan', hasilnya terdapat pada tabel 10.
 
   Tabel 10. _Output_ matriks _TF-IDF_
 
@@ -265,7 +265,7 @@ Dataset _ratings.csv_
 
 - _Cosine Similarity_
 
-  Kosinus sudut yang dibentuk oleh dua benda atau vektor dalam ruang dimensi-n ditentukan oleh skor _cosine similarity_. Sudut antara vektor riwayat berita pembaca pada data uji dan pembaca pada data pelatihan ditentukan dengan menggunakan skor _cosine similarity_. Kedua vektor identik jika sudutnya nol atau skor kosinus adalah 1. Sebaliknya, kedua vektor berbeda secara signifikan satu sama lain jika skor kosinus menampilkan -1, atau sudut 180 derajat. Pada tahap ini, dihitung _cosine similarity dataframe tfidf_matrix_ yang telah diperoleh pada tahapan sebelumnya. Dengan satu baris kode untuk memanggil fungsi _cosine similarity_ dari _library sklearn_, telah berhasil menghitung kesamaan _(similarity)_ antar makanan. Kode akan menghasilkan _output_ berupa matriks kesamaan dalam bentuk _array_ [3]. 
+  Kosinus sudut yang dibentuk oleh dua benda atau vektor dalam ruang dimensi-n ditentukan oleh skor _cosine similarity_. Sudut antara vektor riwayat berita pembaca pada data uji dan pembaca pada data pelatihan ditentukan dengan menggunakan skor _cosine similarity_. Kedua vektor identik jika sudutnya nol atau skor kosinus adalah 1. Sebaliknya, kedua vektor berbeda secara signifikan satu sama lain jika skor kosinus menampilkan -1, atau sudut 180 derajat. **Pada tahap ini, penting dilakukan** dengan menghitung _cosine similarity dataframe tfidf_matrix_ yang telah diperoleh pada tahapan sebelumnya. Dengan satu baris kode untuk memanggil fungsi _cosine similarity_ dari _library sklearn_, telah berhasil menghitung kesamaan _(similarity)_ antar makanan. Kode akan menghasilkan _output_ berupa matriks kesamaan dalam bentuk _array_ [3]. 
 
   Tabel 11. _Output_ hasil perhitungan _cosine similirarity_
 
@@ -288,15 +288,21 @@ Dataset _ratings.csv_
 
 - _Train-Test-Split_
 
-  Proses membagi himpunan data menjadi data pelatihan dan pengujian adalah langkah yang diperlukan sebelum membuat model. Hal ini penting dilakukan untuk memperkuat semua data yang tersedia untuk menilai beberapa generalisasi model ke data baru. Tercatat bahwa setiap transformasi data yang dilakukan juga berfungsi sebagai komponen model. Karena data _test set_ (uji) mentah, semua transformasi harus dilakukan pada data latih. Data dibagi menjadi 80% data _training_ dan 20% data _testing_.
+  Proses membagi himpunan data menjadi data pelatihan dan pengujian adalah langkah yang diperlukan sebelum membuat model. **Hal ini penting** dilakukan untuk memperkuat semua data yang tersedia untuk menilai beberapa generalisasi model ke data baru. Tercatat bahwa setiap transformasi data yang dilakukan juga berfungsi sebagai komponen model. Karena data _test set_ (uji) mentah, semua transformasi harus dilakukan pada data latih. Data dibagi menjadi 80% data _training_ dan 20% data _testing_.
 
    [[ 35  19]
- [ 60 232]
- [ 66 244]
- ...
- [ 73  52]
- [ 30  64]
- [ 61 235]] [0.22222222 0.55555556 0.11111111 0.22222222 0.33333333 ... ] 
+  
+   [ 60 232]
+ 
+   [ 66 244]
+ 
+   ...
+ 
+   [ 73  52]
+ 
+   [ 30  64]
+ 
+   [ 61 235]] [0.22222222 0.55555556 0.11111111 0.22222222 0.33333333 ... ] 
 
 - Proses _encoding_
 
@@ -314,9 +320,9 @@ Model akan dikembangkan dengan 2 metode yang berbeda. Kedua metode tersebut adal
 
      Sistem rekomendasi _Content Based Filtering_ menyarankan produk yang mirip dengan produk yang disukai pengguna sebelumnya. Nilai item ditentukan dengan mempertimbangkan fitur yang ada di setiap konten. Sistem rekomendasi _knowledge-based_ menyarankan item berdasarkan pengetahuan domain pengguna tentang fitur apa yang tersedia dalam item dan bagaimana pengguna dapat memenuhi kebutuhan dan berguna bagi pengguna. Nilai kesamaan dihitung berdasarkan besarnya nilai kesamaan antara kebutuhan pengguna dan rekomendasi yang ada. Ada dua pendekatan yang tersedia dalam metode rekomendasi _knowledge-based_ yaitu _case based_ dan _constraint-based_. Kesamaan antara kedua pendekatan ini adalah bahwa pengguna harus mengirimkan permintaan sesegera mungkin.  Selanjutnya, sistem akan mengidentifikasi solusi yang paling sesuai dengan kebutuhan pengguna [1]. Seperti yang terlihat pada gambar 3.
 
-   Gambar 1. Metode _Content Based Filtering_
-
    ![CBF](https://github.com/fannof/project_recommendation_system/assets/99071605/7051df06-72cd-42cf-8e1a-7474475ec6d3)
+
+   Gambar 1. Metode _Content Based Filtering_
 
    _(Sumber: https://www.google.com/url?sa=i&url=https%3A%2F%2Fdqlab.id)_
 
@@ -353,9 +359,9 @@ Model akan dikembangkan dengan 2 metode yang berbeda. Kedua metode tersebut adal
 
       Metode _Collaborative Filtering_ adalah teknik yang memberikan rekomendasi berdasarkan preferensi pengguna atau item serupa lainnya.  Dua jenis metode _Collaborative Filtering_ dibedakan menjadi: _User Based CF_ dan _Item Based CF_. _User-Based Collaborative Filtering_ menyatakan bahwa cara terbaik untuk menemukan item menarik bagi pengguna adalah dengan mencari pengguna lain yang memiliki minat atau kebutuhan yang sama. Algoritma _User Based CF_ dapat mengidentifikasi pengguna yang mirip satu sama lain _(user neighbor)_ dengan mengidentifikasi pengguna yang berbeda satu sama lain _(user similarity)_. Setiap rating yang didapatkan dari pengguna yang bertetangga kemudian akan dijadikan mesin rekomendasi bagi pengguna aktif [1]. Seperti yang terlihat pada gambar 4.
 
-   Gambar 2. _Collaborative Filtering_
-
    ![CF](https://github.com/fannof/project_recommendation_system/assets/99071605/5b839287-f715-4b06-abd4-bf1bce8759c4)
+
+   Gambar 2. Metode _Collaborative Filtering_
 
    _(Sumber: https://www.google.com/url?sa=i&url=https%3A%2F%2Fdqlab.id)_
 
@@ -429,13 +435,41 @@ Model akan dikembangkan dengan 2 metode yang berbeda. Kedua metode tersebut adal
 
 ## Evaluation
 
-- Metrik yang digunakan adalah _RMSE_
+- Metrik yang digunakan dalam metode _Content Based Filtering_ adalah _Precision_
+
+  _Precision_ dihitung berdasarkan formula:
+
+  $$Precision = \frac{Jumlah\ item\ relevan\ yang\ direkomendasikan}{Jumlah\ total\ item\ yang\ direkomendasikan}$$
+
+  Di sini, "item relevan yang direkomendasikan" adalah item-item yang sesuai dengan preferensi atau karakteristik pengguna dan "jumlah total item yang direkomendasikan" adalah total item yang diberikan sebagai rekomendasi oleh sistem.
+
+  Formula ini mengukur seberapa banyak item yang direkomendasikan oleh sistem yang memang relevan dengan preferensi atau karakteristik pengguna, dengan nilai precision berkisar dari 0 hingga 1, di mana 1 menunjukkan bahwa semua item yang direkomendasikan adalah relevan.
+  
+  Tabel 13. Mencari reomendasi yang mirip dengan makanan _sweet potato pie_
+
+  |     | id_makanan |     nama_makanan | jenis_makanan |
+  |----:|-----------:|-----------------:|---------------|
+  | 413 |        225 | sweet potato pie |       Dessert |
+
+  Tabel 14. Hasil sistem rekomendasi dengan metode _Content Based Filtering_
+
+  |   |                      nama_makanan | jenis_makanan |
+  |--:|----------------------------------:|--------------:|
+  | 0 |           chocolate fudge cookies |       Dessert |
+  | 1 |              homemade gulab jamun |       Dessert |
+  | 2 | jalebi with fennel yogurt pudding |       Dessert |
+  | 3 |   double chocolate easter cookies |       Dessert |
+  | 4 |           eggless coffee cupcakes |       Dessert |
+
+  Dari hasil rekomendasi pada tabel 14, diketahui bahwa _sweet potato pie_ termasuk ke dalam kategori _Dessert_. Dari 5 item yang direkomendasikan, 5 item memiliki kategori _Dessert_ (similar). Artinya, precision sistem tersebut sebesar 5/5 atau 100%. Dengan nilai _precision_ tersebut dapat disimpulkan bahwa sistem rekomendasi ini dapat menyelesaikan masalah preferensi pelanggan.
+
+- Metrik yang digunakan dalam metode _Collborative Filtering_ adalah _RMSE_
 
   _Root Mean Squared Error (RMSE)_ adalah salah satu metrik evaluasi yang umum digunakan dalam regresi untuk mengukur seberapa baik model regresi memprediksi nilai target aktual dalam suatu dataset. Metrik ini memberikan gambaran tentang seberapa dekat prediksi model dengan nilai aktual yang diamati.
 
-  Gambar 3. Plot akurasi metrik evaluasi _RMSE_
-
   ![RMSE](https://github.com/fannof/project_recommendation_system/assets/99071605/68163659-08f3-43c8-a378-3eb1eed18c38)
+
+  Gambar 3. Plot akurasi metrik evaluasi _RMSE_
 
   Pada gambar 3, proses _training_ model cukup smooth dan model konvergen pada _epochs_ sekitar 100. Dari proses ini, diperoleh nilai _error_ akhir sebesar sekitar 0.19 dan _error_ pada data validasi sebesar 0.33. Nilai tersebut cukup bagus untuk sistem rekomendasi.
 
@@ -456,6 +490,8 @@ Model akan dikembangkan dengan 2 metode yang berbeda. Kedua metode tersebut adal
     - Mengambil akar kuadrat dari nilai rata-rata tersebut untuk mendapatkan nilai _RMSE_.
 
     _RMSE_ memberikan informasi tentang seberapa besar deviasi rata-rata antara prediksi model dan nilai aktual. Semakin kecil nilai _RMSE_, semakin baik performa model dalam memprediksi nilai target. Sebaliknya, nilai _RMSE_ yang lebih tinggi menunjukkan bahwa model cenderung memiliki kesalahan prediksi yang lebih besar.
+
+    Dari hasil _Top 10 food recommendation_ untuk user pada tahap _Modeling_, sistem tersebut sudah mampu merekomendasikan 10 makanan top berdasarkan rating. Hasil ini sudah dapat membantu pelayan untuk merekomendasikan makanan yang cocok bagi pelanggan.
      
 ## REFERENCES
 
