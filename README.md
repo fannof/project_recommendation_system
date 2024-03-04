@@ -306,7 +306,7 @@ Dataset _ratings.csv_
 
 - Proses _encoding_
 
-  Pada tahap ini diperlukan proses menyandikan _(encode)_ fitur ‘user_id’ dan ‘id_makanan’ ke dalam indeks integer. Memetakan ‘user_id’ dan ‘id_makanan’ ke _dataframe_ yang berkaitan. Mengecek beberapa hal dalam data seperti jumlah user, jumlah makanan, kemudian mengubah nilai rating menjadi float.
+  **Pada tahap ini diperlukan** proses menyandikan _(encode)_ fitur ‘user_id’ dan ‘id_makanan’ ke dalam indeks integer. Memetakan ‘user_id’ dan ‘id_makanan’ ke _dataframe_ yang berkaitan. Mengecek beberapa hal dalam data seperti jumlah user, jumlah makanan, kemudian mengubah nilai rating menjadi float.
 
   - 100
   - 309
